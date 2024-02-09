@@ -1,0 +1,33 @@
+#! /bin/sh
+
+notify-send "Getting list of available Wi-Fi networks..."
+# nmcli obtains all available networks and pipes its output into awk.
+# awk then:
+# - Finds the currently connected-to network and prints it separately.
+# - Takes the list of all other available networks and deduplicates on SSID.
+# - For both of the above, replaces the bars and security columns with
+#   material design icons that combine information from both.
+curr_net=$(nmcli d wifi list | awk '/^\*/ {print $3,$9,$10}' \
+                             | awk '{gsub(/(▂▄▆█).*/, "󰤨", $0)}
+                                    {gsub(/(▂▄▆_).*/, "󰤥", $0)}
+                                    {gsub(/(▂▄__).*/, "󰤢", $0)}
+                                    {gsub(/(▂___).*/, "󰤟", $0)}
+                                    {gsub(/(____).*/, "󰤯", $0)}
+                                    {print $2,$1}')
+# NR>1 skips the column names, !/^\*/ skips curr_net as it states "not beginning w/ *",
+# and !a[$2]++ creates a map of SSID to SSID count. If the count is > 0, then skip it.
+list_net=$(nmcli d wifi list | awk 'NR>1 && !/^\*/ && !a[$2]++ {print $2,$8,$9}' \
+                             | awk '{gsub(/▂▄▆█ WPA.?.*/, "󰤪", $0)}
+                                    {gsub(/▂▄▆_ WPA.?.*/, "󰤧", $0)}
+                                    {gsub(/▂▄__ WPA.?.*/, "󰤤", $0)}
+                                    {gsub(/▂___ WPA.?.*/, "󰤡", $0)}
+                                    {gsub(/____ WPA.?.*/, "󰤬", $0)}
+                                    {gsub(/▂▄▆█ --/, "󱛎", $0)}
+                                    {gsub(/▂▄▆_ --/, "󱛍", $0)}
+                                    {gsub(/▂▄__ --/, "󱛌", $0)}
+                                    {gsub(/▂___ --/, "󱛋", $0)}
+                                    {gsub(/____ --/, "󱛏", $0)}
+                                    {print $2,$1}')
+
+#net=$(echo -e "$curr_net\n$list_net" | fuzzel -d)
+echo -e "$curr_net\n$list_net" | fuzzel -d

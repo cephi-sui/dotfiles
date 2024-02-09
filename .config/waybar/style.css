@@ -1,0 +1,271 @@
+@import "macchiato.css";
+
+* {
+    /* FiraMono is my font of choice, the Propo version is required to align
+       icons correctly. */
+    font-family: "FiraMono Nerd Font Propo", "Hack Nerd Font Propo", "Inconsolata Nerd Font Propo", "JetBrainsMono Nerd Font Propo", sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+window#waybar {
+    /*background-color: alpha(@base, 0.5);*/
+    background-color: transparent;
+    color: @text;
+    /* background-color: rgba(43, 48, 59, 0.5); */
+    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+    /* color: #ffffff; */
+    /* transition-property: background-color;
+    transition-duration: .5s; */
+}
+
+/*
+window#waybar.hidden {
+    opacity: 0.2;
+}*/
+/* Rules for when the solo tiled window in the workspace is a specific class. */
+/*
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+window#waybar.firefox {
+    background-color: #000000;
+    border: none;
+}*/
+
+/* The tooltip itself (background, border) */
+tooltip {
+    padding: 0;
+    border: 2px solid @lavender;
+    border-radius: 18px;
+    background-color: alpha(@base, 0.7);
+}
+
+/* Clear default GTK styling. */
+tooltip * {
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: inherit;
+    background-color: transparent;
+}
+
+/* Text of the tooltip */
+tooltip label {
+    padding: 8px;
+}
+
+/* Default styling for module sections. */
+.modules-left,
+.modules-center,
+.modules-right,
+#workspaces,
+#window {
+    border: solid 2px @lavender;
+    border-radius: 18px;
+    background-color: alpha(@base, 0.7);
+}
+
+.modules-left {
+    border: none;
+    background-color: transparent;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    /* box-shadow: inset 0 -3px transparent; */
+    /* Remove the GTK borders on buttons. */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    /*background: inherit;*/
+    /*box-shadow: inset 0 -3px #ffffff;*/
+    /* Removes the default button hover effect. */
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+/* Space everything in modules-left by the same amount. */
+#workspaces, #window {
+    margin: 0px 2px;
+}
+
+/* Push buttons inward to match circle to border radius. */
+#workspaces {
+    padding: 0px 3px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* For workspace icons, clear padding and space by constant amount. */
+#workspaces button {
+/*    padding: 0 5px;
+    background-color: transparent;
+    color: #ffffff;*/
+    /* Zeroes out the default GTK padding.*/
+    padding: 0;
+    margin: 0px 2px;
+}
+
+/* Default GTK styling makes text become highlighted. */
+#workspaces button:hover {
+    /*background: rgba(0, 0, 0, 0.2);*/
+}
+
+#workspaces button.active {
+    /*box-shadow: inset 0 -3px #ffffff;*/
+}
+
+#workspaces button.urgent {
+    color: @red;
+}
+
+#workspaces.special button.urgent {
+    color: inherit;
+}
+
+#window {
+    padding: 0px 8px;
+}
+
+/* Bold the window title if the workspace is zoomed. */
+window#waybar.fullscreen #window {
+    font-weight: bold;
+}
+
+/* Remove the window widget if there is no window in workspace. */
+window#waybar.empty #window {
+    background-color: transparent;
+    border: none;
+}
+
+.modules-center {
+    margin: 0px 10px;
+}
+
+#clock {
+    padding: 0px 8px;
+}
+
+.modules-right {
+    padding: 0px 3px;
+}
+
+#tray,
+#keyboard-state > label.locked,
+#idle_inhibitor,
+#backlight,
+#pulseaudio,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#custom-battery,
+#bluetooth,
+#network {
+    margin: 0px 4px;
+    padding: 0px 3px;
+    /*background-color: #ffffff;*/
+}
+
+.modules-right > widget:first-child {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child {
+    margin-right: 0;
+}
+
+#tray {
+    /*background-color: #2980b9;*/
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: alpha(@red, 0.7);
+}
+
+/* Zero out the padding/margin for the module itself and let
+   the label inside handle margin for when the locked icon appears. */
+#keyboard-state {
+    padding: 0;
+    margin: 0;
+}
+
+#keyboard-state > label {
+    /*background: #97e1ad;*/
+}
+
+#keyboard-state > label.locked {
+}
+
+/* Pushing the CPU and memory modules together. */
+#cpu {
+    margin-right: 0;
+
+    /*background-color: #2ecc71;*/
+}
+
+#memory {
+    margin-left: 0;
+
+    /*background-color: #9b59b6;*/
+}
+
+#disk {
+    /*background-color: #964B00;*/
+}
+
+#backlight {
+    /*background-color: #90b1b1;*/
+}
+
+#pulseaudio {
+    /*background-color: #f1c40f;*/
+}
+
+#pulseaudio.muted {
+    color: @subtext0;
+}
+
+/* Pushing the two pulseaudio modules together. */
+#pulseaudio.output {
+    margin-right: 0;
+}
+
+#pulseaudio.input {
+    margin-left: 0;
+}
+
+#temperature {
+    /*background-color: #f0932b;*/
+}
+
+#temperature.critical {
+    font-weight: bold;
+}
+
+#custom-battery {
+    /*background-color: @maroon;*/
+}
+
+#bluetooth {
+    /*background-color: @blue;*/
+}
+
+#network {
+    /*background-color: #2980b9;*/
+}
+
+#network.disconnected {
+}
