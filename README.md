@@ -106,7 +106,7 @@ arch-chroot /mnt
 #### Initial Applications
 
 ```shell
-pacman -Syu sudo base-devel pacman-contrib vim networkmanager ufw man-db man-pages texinfo wget curl w3m tmux unzip openssh htop nvtop btop neofetch speedtest-cli
+pacman -Syu sudo base-devel git pacman-contrib vim networkmanager ufw man-db man-pages texinfo wget curl w3m tmux unzip openssh htop nvtop btop neofetch speedtest-cli
 ```
 
 #### Configuration
@@ -243,9 +243,9 @@ Add user to sudoers, either through adding the user or uncommenting the
 
 #### [AMD](https://wiki.archlinux.org/title/AMDGPU)
 
-`mesa` is the DRI driver for 3D acceleration.
-`vulkan-radeon` adds `Vulkan` support.
-`libva-mesa-driver` adds `VA-API` accelerated video decoding.
+`mesa` is the DRI driver for 3D acceleration.  
+`vulkan-radeon` adds `Vulkan` support.  
+`libva-mesa-driver` adds `VA-API` accelerated video decoding.  
 `mesa-vdpai` adds `VDPAU` accelerated video decoding.
 ```shell
 sudo pacman -Syu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau
@@ -279,8 +279,8 @@ lspci -k | grep -B 2 nvidia
 
 #### [Intel](https://wiki.archlinux.org/title/Intel_graphics)
 
-`mesa` is the DRI driver for 3D acceleration.
-`vulkan-intel` adds `Vulkan` support.
+`mesa` is the DRI driver for 3D acceleration.  
+`vulkan-intel` adds `Vulkan` support.  
 `intel-media-driver` adds `VA-API` accelerated video decoding.
 ```shell
 sudo pacman -Syu mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver
@@ -302,9 +302,9 @@ This section could go in the System Setup section, but `rustup` and `paru` insta
 
 #### Dev Tools
 
-`git` is generally going to be necessary, and `rustup` is needed for `paru`.
+`rustup` is needed for `paru`.
 ```shell
-sudo pacman -Syu git rustup
+sudo pacman -Syu rustup
 rustup default stable
 ```
 
@@ -364,6 +364,7 @@ sudo ln -s /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf !$
 
 ### Feature Overview
 
+| --- | --- |
 | Compositor | Hyprland |
 | Display Manager | SDDM |
 | Policy Kit | KDE |
