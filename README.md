@@ -535,7 +535,7 @@ https://github.com/hyprwm/contrib.git
   bind = $mainMod, 60, exec, killall fuzzel; BEMOJI_PICKER_CMD="fuzzel -d" bemoji -t # Super + .
   ```
 
-#### Wifi Menu
+#### Wi-Fi Menu
 
 A basic, custom-made nmcli frontend script stored in `~/.config/fuzzel/` using Material Design icons to match the riced Waybar.
 
@@ -547,9 +547,9 @@ One fun way to call this menu is via the power button.
 To do so, modify `/etc/systemd/logind.conf` to ignore the power key.  
 Then bind the power key in Hyprland.
 > `~/.config/hypr/hyprland.conf`
-  ```ini
-  bind = , XF86PowerOff, exec, ~/.config/fuzzel/fuzzel-power-menu
-  ```
+```ini
+bind = , XF86PowerOff, exec, ~/.config/fuzzel/fuzzel-power-menu
+```
 
 ### Status Bar
 
@@ -558,7 +558,7 @@ Waybar is a simple GTK-based status bar.
 sudo pacman -Syu waybar
 ```
 
-#### Edit `config`
+#### Notes on editing config
 
 - Uncomment the layer top line so that waybar appears on top of windows
 - Remove/add desired modules
@@ -574,13 +574,11 @@ sudo pacman -Syu cliphist
 ```
 
 > `~/.config/hypr/hyprland.conf`
-  ```ini
-  exec-once = wl-paste --type text --watch cliphist store #Stores only text data
-  exec-once = wl-paste --type image --watch cliphist store #Stores only image data
-  ```
-  ```ini
-  bind = $mainMod, V, exec, killall fuzzel; cliphist list | fuzzel -d | cliphist decode | wl-copy
-  ```
+```ini
+exec-once = wl-paste --type text --watch cliphist store #Stores only text data
+exec-once = wl-paste --type image --watch cliphist store #Stores only image data
+bind = $mainMod, V, exec, killall fuzzel; cliphist list | fuzzel -d | cliphist decode | wl-copy
+```
 
 ### Notifications
 
@@ -591,12 +589,10 @@ paru -S swaync
 ```
 
 > `~/.config/hypr/hyprland.conf`
-  ```ini
-  exec-once = swaync
-  ```
-  ```ini
-  bind = $mainMod, N, exec, swaync-client -t -sw
-  ```
+```ini
+exec-once = swaync
+bind = $mainMod, N, exec, swaync-client -t -sw
+```
 
 ### Wallpaper
 
