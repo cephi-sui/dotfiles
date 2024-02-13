@@ -374,18 +374,8 @@ sudo ln -s /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf !$
 | Notifications | SwayNotificationCenter |
 | ~Onscreen Display~ | ~SwayOSD~ |
 | Screenshot | Grimblast (using `grim`, `slurp`, `hyprpicker`) |
-| Wallpaper | swww |
+| Wallpaper | swww (+ waypaper) |
 | Lockscreen | Swaylock |
-Window management & hotkeys - Hyprland  
-Display manager - SDDM  
-Polkit - KDE  
-Status bar w/ tray icons - Waybar  
-App launcher - Fuzzel  
-Notifications - swaync  
-Onscreen Display - SwayOSD  
-Screenshot - Grimblast (shell script) using grim, slurp, and hyprpicker  
-Wallpaper - hyprpaper OR (swaybg/swww + waypaper)  
-Lockscreen - swaylock (+ swayidle)
 
 ### Basic Applications
 
@@ -414,90 +404,112 @@ sudo pacman -Syu pavucontrol
 
 ### Window Manager and Display Manager
 
-`sudo pacman -Syu hyprland sddm`
-
-`sudo systemctl enable sddm` 
+```shell
+sudo pacman -Syu hyprland sddm && sudo systemctl enable sddm
+```
 
 #### Fun DPI Display Fuckery
 
-To get applications to scale properly:
-
+To get applications to scale properly, go to the scaling section of `~/.config/hypr/hyprland.conf`
 - QT: Env variable `QT_SCALE_FACTOR` (float)
 - GTK: Env variable `GDK_SCALE` (int)
-- Electron: Add `--force-device-scale-factor=<float>` to the `.desktop` in  `/usr/share/applications/`  OR just use `ctrl++`
-- XWayland: In `~/.config/hypr/hyprland.conf`
 
-  ```
-  xwayland {
-      force_zero_scaling = true
-  }
-  ```
+For Electron applications either:
+- Add `--force-device-scale-factor=<float>` to the `.desktop` in  `/usr/share/applications/`
+- Just use `ctrl++` in the application itself.
 
 #### Necessary Packages
 
-`sudo pacman -Syu xdg-desktop-portal-hyprland xdg-desktop-portal-gtk wev qt5-wayland qt6-wayland jq` 
-
-`paru -S xwaylandvideobridge-bin` <- Screensharing shenanigans
-
-Media control: `sudo pacman -Syu playerctl`
-
-Brightness control: `sudo pacman -Syu brightnessctl`
-
-Use `wev` ( `ctrl` + `c`  to exit ) to determine keycodes for `~/.config/hypr/hyprland.conf`
-
+```shell
+sudo pacman -Syu xdg-desktop-portal-hyprland xdg-desktop-portal-kde xdg-desktop-portal-gtk qt5-wayland qt6-wayland jq
 ```
-I know I'm from the future, but you need to remove SDL_VIDEODRIVER=wayland for the vast majority of Steam games to function 
+
+Supposedly aids in screensharing:
+```shell
+paru -S xwaylandvideobridge-bin`
 ```
+
+Install media and brightness controls.
+```shell
+sudo pacman -Syu playerctl brightnessctl
+```
+
+If desired, install `wev` ( `ctrl` + `c`  to exit ) to determine keycodes for `~/.config/hypr/hyprland.conf`
+
+### Screenshotting
+
+For screenshots, the `grimblast` script will freeze the screen using
+ `hyprpicker`, select a region using `slurp`, and screenshot using `grim`.
+
+```shell
+sudo pacman -Syu grim slurp
+```
+```shell
+paru -S hyprpicker
+```
+
+Pull this repo [https://github.com/hyprwm/contrib/](https://github.com/hyprwm/contrib/tree/main) and run `make install`.
+```shell
+git clone https://github.com/hyprwm/contrib.git && cd contrib/grimblast && make install
+``` 
 
 ### Policy Kit
 
-`sudo pacman -Syu polkit-kde-agent` 
+```shell
+sudo pacman -Syu polkit-kde-agent
+```
 
 > `~/.config/hypr/hyprland.conf` 
-
-```
+```ini
 exec-once=/usr/lib/polkit-kde-authentication-agent-1
 ```
 
-### Screen Rotation (For tablet PCs)
+### Screen Rotation (For Tablet PCs)
 
-`paru -S iio-hyprland` (this will automatically download iio-sensor-proxy as a dependency)
+Install `iio-hyprland`, which will pull `iio-sensor-proxy` as a dependency.
+```shell
+paru -S iio-hyprland
+```
 
 Run `hyprctl monitors` to obtain desired monitor for rotation.
 
 > It may be necessary to specify the monitor in `~/.config/hypr/hyprland.conf` like so.
->
-> ```
-> monitor = $mainMoni,preferred,auto,auto
-> ```
+  ```ini
+  monitor = $mainMoni,preferred,auto,auto
+  ```
 
-`~/.config/hypr/hyprland.conf`
+Run the programs at startup.
+> `~/.config/hypr/hyprland.conf`
+  ```shell
+  exec-once = iio-sensor-proxy & iio-hyprland
+  ```
 
+### Lockscreen
+
+```shell
+sudo pacman -Syu swaylock
 ```
-exec-once = iio-sensor-proxy & iio-hyprland
-```
-
-### Swaylock
-
-`sudo pacman -Syu swaylock`
 
 Swaylock can be run with the following command:
 
-`swaylock --daemonize --indicator-caps-lock --show-failed-attempts` 
+```shell
+swaylock --daemonize --indicator-caps-lock --show-failed-attempts
+```
 
 This command will get called with the `fuzzel-power-menu` script (see below).
 
-### Fuzzel (Application Launcher)
+### Application Launcher & Menu
 
 Fuzzel is a smaller, faster application launcher than Rofi, while still providing the base dmenu functionality necessary.
 
-`sudo pacman -Syu fuzzel`
+```shell
+sudo pacman -Syu fuzzel
+```
 
 > `~/.config/hypr/hyprland.conf`
-
-```
-bindr = $mainMod, Super_L, exec, killall fuzzel || fuzzel
-```
+  ```ini
+  bindr = $mainMod, Super_L, exec, killall fuzzel || fuzzel
+  ```
 
 #### Clipboard History
 
@@ -508,35 +520,42 @@ See below.
 Bemoji has history built-in and sends the emoji list via dmenu.  
 It also allows for easily adding new entries like kaomoji :D
 
-`sudo pacman -Syu bemoji`
+```shell
+sudo pacman -Syu bemoji
+```
+
+Bemoji is run with Fuzzel as its picker.
+```shell
+https://github.com/hyprwm/contrib.git
+```
 
 > `~/.config/hypr/hyprland.conf` 
-
-```
-bind = $mainMod, 60, exec, killall fuzzel; BEMOJI_PICKER_CMD="fuzzel -d" bemoji -t # Super + .
-```
+  ```ini
+  bind = $mainMod, 60, exec, killall fuzzel; BEMOJI_PICKER_CMD="fuzzel -d" bemoji -t # Super + .
+  ```
 
 #### Wifi Menu
 
-A basic, custom-made nmcli frontend script stored in `~/.config/fuzzel/` using Material Design icons to match my Waybar.
+A basic, custom-made nmcli frontend script stored in `~/.config/fuzzel/` using Material Design icons to match the riced Waybar.
 
 #### Power Menu
 
- A script stored in `~/.config/fuzzel/` which makes use of `swaylock` (see below).
+ A script stored in `~/.config/fuzzel/` which makes use of `swaylock` (see above).
 
-One fun way to call this menu is via the power button, so I modified `/etc/systemd/logind.conf` to ignore the power key, then
+One fun way to call this menu is via the power button.  
+To do so, modify `/etc/systemd/logind.conf` to ignore the power key.  
+Then bind the power key in Hyprland.
+> `~/.config/hypr/hyprland.conf`
+  ```ini
+  bind = , XF86PowerOff, exec, ~/.config/fuzzel/fuzzel-power-menu
+  ```
 
->  `~/.config/hypr/hyprland.conf`
+### Status Bar
 
+Waybar is a simple GTK-based status bar.
+```shell
+sudo pacman -Syu waybar
 ```
-bind = , XF86PowerOff, exec, ~/.config/fuzzel/fuzzel-power-menu
-```
-
-### Waybar (Status Bar)
-
-`sudo pacman -Syu waybar` 
-
-`cp -r /etc/xdg/waybar/ ~/.config/waybar/` 
 
 #### Edit `config`
 
@@ -544,164 +563,193 @@ bind = , XF86PowerOff, exec, ~/.config/fuzzel/fuzzel-power-menu
 - Remove/add desired modules
 - Replace "sway" with "hyprland"
 - Change "focused" to "active" when referring to workspaces
-- <<https://www.reddit.com/r/hyprland/comments/12gn52e/comment/jfofgv4/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>\> Monitor-independent workspaces idea which is turned into a script for my dotfiles.
+- <https://www.reddit.com/r/hyprland/comments/12gn52e/comment/jfofgv4/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button> Monitor-independent workspaces idea which is turned into a script for these dotfiles.
 
 ### Clipboard
 
-`sudo pacman -Syu cliphist`
-
->  `~/.config/hypr/hyprland.conf`
-
-```ini
-exec-once = wl-paste --type text --watch cliphist store #Stores only text data
-
-exec-once = wl-paste --type image --watch cliphist store #Stores only image data
+Cliphist is a program that stores clipboard history that can be read out later.
+```shell
+sudo pacman -Syu cliphist
 ```
 
-```
-bind = $mainMod, V, exec, killall fuzzel; cliphist list | fuzzel -d | cliphist decode | wl-copy
-```
-
-### Screenshotting
-
-For screenshots, the grimblast script will freeze the screen using hyprpicker, select a region using slurp, and screenshot using grim.
-
-`paru -S grim slurp hyprpicker` 
-
-Pull this repo <[https://github.com/hyprwm/contrib/](https://github.com/hyprwm/contrib/tree/main)\> and run `make install`
-
-`~/.config/hypr/hyprland.conf`
-
-```
-bind = $mainMod, SHIFT, S, exec, grimblast --freeze copy area
-bind = , 107, exec, grimblast copy screen # Prt Sc
-bind = $mainMod, 107, exec, grimbast copy active # Super + Prt Sc
-```
+> `~/.config/hypr/hyprland.conf`
+  ```ini
+  exec-once = wl-paste --type text --watch cliphist store #Stores only text data
+  exec-once = wl-paste --type image --watch cliphist store #Stores only image data
+  ```
+  ```ini
+  bind = $mainMod, V, exec, killall fuzzel; cliphist list | fuzzel -d | cliphist decode | wl-copy
+  ```
 
 ### Notifications
 
-`paru -S swaync` 
+SwayNotificationCenter is a nice GTK-based notification center which supports
+ widgets for various purposes, like music.
+```shell
+paru -S swaync
+```
 
-```
-exec-once = swaync
-```
-
-```
-bind = $mainMod, N, exec, swaync-client -t -sw
-```
+> `~/.config/hypr/hyprland.conf`
+  ```ini
+  exec-once = swaync
+  ```
+  ```ini
+  bind = $mainMod, N, exec, swaync-client -t -sw
+  ```
 
 ### Wallpaper
 
-- Static: `sudo pacman -Syu hyprpaper` 
-- Animated: `paru -S swww waypaper-git`
+- Static:
+  ```shell
+  sudo pacman -Syu hyprpaper
+  ```
+- Animated:
+  ```shell
+  paru -S swww waypaper-git
+  ```
 
 ### Default Applications
 
-`sudo pacman -Syu perl-file-mimeinfo` 
+```shell
+sudo pacman -Syu perl-file-mimeinfo
+```
 
 Set default application for given filetype:
-
-`mimeopen -d <filename>.<filetype>`
+```shell
+mimeopen -d <filename>.<filetype>
+```
 
 ### Aesthetics
 
 #### Font
 
-FiraMono Nerd Font
-
-FiraMono Nerd Font Mono and FiraMono Nerd Font Propo are used as needed.
-
+FiraMono Nerd Font.  
+FiraMono Nerd Font Mono and FiraMono Nerd Font Propo are used as needed.  
 FiraCode is not used to avoid having to deal with ligatures.
+
+#### Color Scheme
+
+Catppuccin Macchiato Lavender.  
+Provides a nice balance as a dark mode that isn't too dark.  
+Lavender is simply a preferred accent.
 
 #### Hyprland
 
-<<https://github.com/catppuccin/hyprland>\>
+<https://github.com/catppuccin/hyprland>
 
 #### SDDM
 
-<<https://github.com/Kangie/sddm-sugar-candy>\>
+<https://github.com/Kangie/sddm-sugar-candy>
 
-`sudo pacman -S --needed sddm qt5-graphicaleffects qt5-quickcontrols2 qt5-svg` 
-
-`git clone https://github.com/Kangie/sddm-sugar-candy && cd sddm-sugar-candy` 
-
-`sudo mkdir /usr/share/sddm/themes/sugar-candy && sudo cp -r . /usr/share/sddm/themes/sugar-candy` 
-
-`sudo cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf` 
+```shell
+sudo pacman -S --needed sddm qt5-graphicaleffects qt5-quickcontrols2 qt5-svg
+git clone https://github.com/Kangie/sddm-sugar-candy && cd sddm-sugar-candy
+sudo mkdir /usr/share/sddm/themes/sugar-candy
+sudo cp -r . !$
+sudo cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf
+```
 
 > `/etc/sddm.conf` 
-
-```
-[Theme]
-Current=sugar-candy
-```
+  ```
+  [Theme]
+  Current=sugar-candy
+  ```
 
 #### Swaylock
 
-<<https://github.com/catppuccin/swaylock>\>
+<https://github.com/catppuccin/swaylock>
 
 #### Alacritty
 
-<<https://github.com/catppuccin/alacritty>\>
+<https://github.com/catppuccin/alacritty>
 
 #### Fuzzel
 
-<<https://github.com/catppuccin/fuzzel>\>
+<https://github.com/catppuccin/fuzzel>
 
 #### Waybar
 
-<<https://github.com/catppuccin/waybar>\>
+<https://github.com/catppuccin/waybar>
 
-#### SwayNC
+#### SwayNotificationCenter
 
-<<https://github.com/catppuccin/swaync>\>
+<https://github.com/catppuccin/swaync>
 
 #### Qt & GTK
 
-<<https://wiki.archlinux.org/title/Uniform_look_for_Qt_and_GTK_applications>\>
+<https://wiki.archlinux.org/title/Uniform_look_for_Qt_and_GTK_applications>
 
 ##### Qt
 
-`sudo pacman -Syu qt5ct kvantum` 
+```shell
+sudo pacman -Syu qt5ct kvantum
+```
 
-<<https://github.com/catppuccin/Kvantum>\>
+<https://github.com/catppuccin/Kvantum>
 
 > `~/.config/hypr/hyprland.conf`
+  ```
+  env = QT_QPA_PLATFORMTHEME,qt5ct
+  ```
 
-```
-env = QT_QPA_PLATFORMTHEME,qt5ct
-```
+Using qt5ct, set the style to Kvantum.
 
-Using qt5ct, set the style to kvantum.
-
-Using kvantum, set the theme to Catppuccin and enable transparency as necessary.
+Using Kvantum, set the theme to Catppuccin and enable transparency as necessary.
 
 **NOTE**: Kvantum uses "reduction in opacity" rather than just "opacity", so if the desired opacity is 70%, use 30%.
 
 ##### GTK
 
-`sudo pacman -Syu gnome-themes-extra`
-
-`paru -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-theme-frappe catppuccin-gtk-theme-latte` 
-
+```shell
+sudo pacman -Syu nwg-look gnome-themes-extra
 ```
-env = GTK_THEME,Catppuccin-Macchiato-Standard-Lavender-Dark:dark
-env = GTK2_RC_FILES,/usr/share/themes/Catppuccin-Macchiato-Standard-Lavender-Dark/gtk-2.0/gtkrc
+```shell
+paru -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-theme-frappe catppuccin-gtk-theme-latte
 ```
+
+Use nwg-look to set the theme. If that fails, the theme can be manually set.
+> `~/.config/hypr/hyprland.conf`
+  ```
+  env = GTK_THEME,Catppuccin-Macchiato-Standard-Lavender-Dark:dark
+  env = GTK2_RC_FILES,/usr/share/themes/Catppuccin-Macchiato-Standard-Lavender-Dark/gtk-2.0/gtkrc
+  ```
 
 #### Icons
 
-`sudo pacman -S papirus-icon-theme` 
+```shell
+sudo pacman -S papirus-icon-theme
+```
+```shell
+paru -S papirus-folders-catppuccin-git && papirus-folders -h
+```
 
-`paru -S papirus-folders-catppuccin-git && papirus-folders -h` 
+#### Wallpaper
 
-### Applications
+<https://www.artstation.com/artwork/4Xa124>
 
+#### Firefox
 
-### Wallpaper
+Improving the Firefox experience.  
+<https://github.com/yokoffing/Betterfox>
 
-<<https://www.artstation.com/artwork/4Xa124>\>
+Improving the Firefox look and feel.  
+<https://github.com/migueravila/SimpleFox>
 
+Getting ride of that stupid copilot ad in github.  
+<https://github.com/guest271314/no-copilot-ad>
+
+Can make things simple by placing this in `.../default-release/chrome/userContent.css` 
+```css
+@-moz-document domain(github.com) {
+    .react-code-size-details-in-header:nth-of-type(2),[data-testid="copilot-popover-button"]{display:none!important}
+}
+```
+
+<https://github.com/catppuccin/firefox>
+
+---
+
+IGNORE
 GNOME TIME
 
   
@@ -796,24 +844,6 @@ KDE Graphics
 
 ---
 
-## Firefox Customization
-
-<<https://github.com/yokoffing/Betterfox>\>  
-Improving the Firefox experience
-
-<<https://github.com/migueravila/SimpleFox>\>  
-Improving the Firefox look and feel
-
-<<https://github.com/guest271314/no-copilot-ad>\>  
-Getting ride of that stupid copilot ad in github
-
-Can make things simple by placing this in `...default-release/chrome/userContent.css` 
-
-```css
-@-moz-document domain(github.com) {
-    .react-code-size-details-in-header:nth-of-type(2),[data-testid="copilot-popover-button"]{display:none!important}
-}
-```
 
 Customization
 
