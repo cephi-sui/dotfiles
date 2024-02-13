@@ -11,13 +11,13 @@ My Arch Linux dotfiles.
 
 ### Connect Installation Medium to Internet
 
-To connect to the Internet, run
-```
+Connect to the Internet using the interactive `iwctl` command.
+```shell
 iwctl
 ```
 
 > `<device>` and `<SSID>` are dependent on the device list and desired network.
-```
+```shell
 device list
 station <device> scan
 station <device> get-networks
@@ -25,20 +25,20 @@ station <device> connect <SSID>
 quit
 ```
 
-Check that the connection is up by doing 
-```
+Check that the connection is up.
+```shell
 ping archlinux.org
 ```
 
 ### Update System Clock
 
-```
+```shell
 timedatectl set-timezone "America/New_York"
 ```
 ### Update Keyring
 
 In case the ISO is out of date.
-```
+```shell
 pacman -Sy archlinux-keyring
 ```
 
@@ -46,7 +46,7 @@ pacman -Sy archlinux-keyring
 
 ## Disk Partitioning and Formatting
 
-```
+```shell
 fdisk -l
 fdisk /dev/the_disk_to_be_partitioned
 ```
@@ -61,13 +61,15 @@ fdisk /dev/the_disk_to_be_partitioned
 [Btrfs](https://wiki.archlinux.org/title/Btrfs)
  and [Bcachefs](https://wiki.archlinux.org/title/Bcachefs)
  are CoW filesystems that support snapshotting, and may be desired instead.
-```
-mkfs.ext4 /dev/root_partition -L arch_os
+```shell
+mkfs.fat -F 32 /dev/efi_system_partition -n grub
 mkswap /dev/swap_partition -L swap
-mkfs.fat -F 32 /dev/efi_system_partition -n GRUB
+mkfs.ext4 /dev/root_partition -L arch_os
 ```
 
-```
+Mount the filesystems into the live environment to generate the fstab and
+ install Arch Linux.
+```shell
 mount /dev/root_partition /mnt
 mount --mkdir /dev/efi_system_partition /mnt/boot
 swapon /dev/swap_partition
@@ -75,203 +77,286 @@ swapon /dev/swap_partition
 
 ---
 
-## Arch Linux Installation
+## Arch Linux System Installation
 
-Don't forget to include nvidia drm for wayland compatibility
+### Initial Setup
 
-`pacstrap -K /mnt base linux linux-firmware`
+Install Arch Linux.
+```shell
+pacstrap -K /mnt base linux linux-firmware
+```
 
-`cp /etc/systemd/network/* /mnt/etc/systemd/network/`  LOL
+Copy systemd-networkd configuration files.
+```shell
+cp /etc/systemd/network/* /mnt/etc/systemd/network/
+```
 
-`genfstab -U /mnt >> /mnt/etc/fstab`
+Generate fstab based on mounted filesystems. Check that the fstab is correct!
+```shell
+genfstab -U /mnt >> /mnt/etc/fstab
+```
 
-`arch-chroot /mnt`
+### Chroot
 
-`pacman -Syu pacman-contrib vim networkmanager sudo ufw man-db man-pages texinfo wget w3m tmux speedtest-cli base-devel unzip openssh neofetch htop nvtop btop`
+The next few sections depend on being chrooted into the mounted filesystem.
+```shell
+arch-chroot /mnt
+```
 
-`pacman -Syu xclip` OR `pacman -Syu wl-clipboard` depending on X11 or Wayland
+#### Initial Applications
 
-## Configuration
+```shell
+pacman -Syu sudo base-devel pacman-contrib vim networkmanager ufw man-db man-pages texinfo wget curl w3m tmux unzip openssh htop nvtop btop neofetch speedtest-cli
+```
+
+#### Configuration
 
 Change configuration files, like `/etc/pacman.conf` to add the multilib repo, enable parallel downloads, etc.
 
-```
-ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+Set up time.
+> `<Region>` and `<City>` are dependent on location.
+```shell
+ln -sf /usr/share/zoneinfo/<Region>/<City> /etc/localtime
 hwclock --systohc
 ```
 
-Edit `/etc/locale.gen` and uncomment `en_US.UTF-8 UTF-8` and other locales
-
-```
+Edit `/etc/locale.gen` and uncomment `en_US.UTF-8 UTF-8` and other desired locales  
+Then generate locales.
+```shell
 locale-gen
 ```
 
 Create `/etc/locale.conf` with `LANG=en_US.UTF-8` in it.
 
-Create `/etc/hostname` with your hostname in it.
+Create `/etc/hostname` with a desired hostname in it.
 
-Create a password for root
-
-```
+Create a password for root.
+```shell
 passwd
 ```
 
----
+#### Bootloader Installation and Configuration
 
-## Bootloader Installation and Configuration
-
-`pacman -Syu amd-ucode` or `pacman -Syu intel-ucode`
-
-`pacman -Syu grub efibootmgr`
-
-`pacman -Syu os-prober`  <- If windows needs to be dual-booted
-
+Install the appropriate ucode package for the CPU.
+```shell
+pacman -Syu amd-ucode
 ```
+**OR**
+```shell
+pacman -Syu intel-ucode
+```
+
+Install bootloader packages.
+```shell
+pacman -Syu grub efibootmgr
+```
+
+To dual-boot Windows, install `os-prober`.
+```shell
+pacman -Syu os-prober
+``` 
+
+Install bootloader.
+```shell
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch
 ```
 
-Edit `/etc/default/grub` to include `GRUB_DISABLE_OS_PROBER=false` <- If windows needs to be dual-booted
+To dual-boot Windows, edit `/etc/default/grub` to include `GRUB_DISABLE_OS_PROBER=false`
 
-`grub-mkconfig -o /boot/grub/grub.cfg` <- If windows needs to be dual-booted, this will not capture Windows because arch-chroot does not allow direct access to disks. You will run this command once booted into the actual OS.
-
-Don't forget to include nvidia drm for wayland compatibility if necessary
-
-`exit`
-
----
-
-Boot the system
-
-`reboot`
-
-`grub-mkconfig -o /boot/grub/grub.cfg` <- If windows needs to be dual-booted
-
-`ufw enable`
-
----
-
-Connect to Wi-Fi using
-
-`systemctl enable --now ufw NetworkManager systemd-networkd systemd-resolved`
-
-`systemctl enable --now NetworkManager`
-
-`systemctl enable --now systemd-networkd`
-
-`systemctl enable --now systemd-resolved` 
-
+Generate bootloader configuration.
+```shell
+grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+NOTE: This will not capture Windows because arch-chroot does not allow direct access to disks. You will run this command once booted into the actual OS and the Windows boot device is mounted.
+
+#### Exit the Chroot and Boot Arch Linux
+```shell
+exit
+reboot
+```
+
+---
+
+## Arch Linux System Setup
+
+To dual boot Windows, mount the partition with the Windows bootloader and run this command again. It should have output stating that Windows was found.
+```shell
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+Enable the firewall before connecting to the Internet.
+```shell
+ufw enable
+```
+
+Enable networking.
+```shell
+systemctl enable --now ufw NetworkManager systemd-networkd systemd-resolved
+```
+
+Allow systemd-resolved to manage DNS resolution instead of NetworkManager.
+```shell
 sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 ```
 
-`nmcli d wifi list`
-
-`nmcli d wifi connect <network> password <password>` 
-
----
+If desired, connect to Wi-Fi.
+> `<network>` and `<password>` are dependent on the desired network.
+```shell
+nmcli d wifi list
+nmcli d wifi connect <network> password <password>
+```
 
 Enable time synchronization
+```shell
+systemctl enable --now systemd-timesyncd
+```
 
-`systemctl enable --now systemd-timesyncd`
+Enable SSD trimming to prolong the SSD lifespan.
+```shell
+systemctl enable fstrim.timer
+```
 
----
+Refresh mirrors on a weekly basis.
+```shell
+pacman -Syu reflector && systemctl enable reflector.timer
+```
 
-Configure the user
+Install CPU frequency controls.
+```shell
+pacman -Syu power-profiles-daemon python-gobject && sudo systemctl enable --now power-profiles-daemon
+```
 
-`useradd -G video,input -m <user>`
+Configure the main user.
+```shell
+useradd -G video,input -m <user>
+```
+```shell
+passwd <user>
+```
 
-`passwd <user>`
-
-Add user to sudoers
-
+Add user to sudoers, either through adding the user or uncommenting the
+ wheel or sudo lines and then adding the user to the group.
 `EDITOR=vim visudo`
 
----
+### Graphics
 
-Switch to the user at this point
+#### [AMD](https://wiki.archlinux.org/title/AMDGPU)
 
----
-
-Dev Tools
-
-`sudo pacman -Syu git rustup`
-
-`rustup default stable`
-
-rustup for cargo is better for dev.
-
----
-
-AUR Helper (paru)
-
+`mesa` is the DRI driver for 3D acceleration.
+`vulkan-radeon` adds `Vulkan` support.
+`libva-mesa-driver` adds `VA-API` accelerated video decoding.
+`mesa-vdpai` adds `VDPAU` accelerated video decoding.
+```shell
+sudo pacman -Syu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau
 ```
-mkdir -p ~/Downloads/git && cd ~/Downloads/git
-git clone https://aur.archlinux.org/paru.git
-cd paru
+
+```shell
+reboot
+```
+
+#### [NVIDIA](https://wiki.archlinux.org/title/NVIDIA)
+
+Set up the [NVIDIA mkinitcpio hook](https://wiki.archlinux.org/title/NVIDIA#pacman_hook) for pacman.
+
+```shell
+sudo pacman -Syu nvidia nvidia-utils lib32-nvidia-utils nvidia-settings
+```
+
+For Wayland compositors, set the `modeset` kernel module parameter in GRUB.
+```
+nvidia_drm.modeset=1
+```
+
+```shell
+reboot
+```
+
+Make sure that nvidia drivers are in use
+```shell
+lspci -k | grep -B 2 nvidia
+```
+
+#### [Intel](https://wiki.archlinux.org/title/Intel_graphics)
+
+`mesa` is the DRI driver for 3D acceleration.
+`vulkan-intel` adds `Vulkan` support.
+`intel-media-driver` adds `VA-API` accelerated video decoding.
+```shell
+sudo pacman -Syu mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver
+```
+
+```shell
+reboot
+```
+
+---
+
+## Arch Linux User Setup
+
+Before starting this section, log in as a non-root user.
+
+### AUR and mkinitcpio Setup
+
+This section could go in the System Setup section, but `rustup` and `paru` install on a per-user basis.
+
+#### Dev Tools
+
+`git` is generally going to be necessary, and `rustup` is needed for `paru`.
+```shell
+sudo pacman -Syu git rustup
+rustup default stable
+```
+
+#### AUR Helper (paru)
+
+AUR helpers are not recommended, but are nice to have.  
+`yay` is the most popular and known-to-work. But `paru` is written in Rust so...
+```shell
+mkdir -p ~/Downloads/git
+cd !$
+git clone https://aur.archlinux.org/paru.git && cd paru
 makepkg -si
 ```
 
----
+#### mkinitcpio Firmware
 
-mkinitcpio firmware
+Install firmware for mkinitcpio so it stops reporting warnings.
+```shell
+paru -S mkinitcpio-firmware
+```
 
-`paru -S mkinitcpio-firmware`
+### Desktop Environment Pre-Setup
 
----
+#### Audio
 
-## Graphics
+PipeWire is a multimedia framework which supports all sound servers.
+```shell
+sudo pacman -Syu pipewire pipewire-audio pipewire-jack pipewire-pulse pipewire-alsa
+```
+Some speakers may require ALSA firmware extras, like `sof-firmware`.
 
-### AMD
+#### Bluetooth
 
-`sudo pacman -Syu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon xf86-video-amdgpu libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau`
+```shell
+sudo pacman -Syu bluez bluez-utils && sudo systemctl enable --now bluetooth.service
+```
 
-### Nvidia
+Install `blueman` for a GUI.
+```shell
+sudo pacman -Syu blueman
+```
 
-Set up the Nvidia, mkinitcpio hook for pacman.
+#### Basic and Graphical Fonts
 
-`sudo pacman -Syu nvidia nvidia-utils lib32-nvidia-utils nvidia-settings`
+```shell
+sudo pacman -Syu gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra nerd-fonts
+```
 
-`reboot`
-
-> Make sure that nvidia drivers are in use `lspci -k | grep -B 2 nvidia`
-
-### Intel
-
-`sudo pacman -Syu mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver`
-
----
-
-## Desktop Setup
-
-#### Refresh mirrors on a weekly basis:
-
-`sudo pacman -Syu reflector && sudo systemctl enable reflector.timer` 
-
-#### CPU Frequency:
-
-`sudo pacman -Syu power-profiles-daemon python-gobject && sudo systemctl enable --now power-profiles-daemon` 
-
-#### SSD Trimming:
-
-`sudo systemctl enable fstrim.timer`
-
-#### Audio:
-
-> Automatically uses wireplumber now!!
-
-`sudo pacman -Syu pipewire pipewire-jack pipewire-pulse pipewire-alsa` 
-
-May require ALSA firmware extras, like `sof-firmware` .
-
-#### Bluetooth:
-
-`sudo pacman -Syu bluez bluez-utils && sudo systemctl enable --now bluetooth.service` 
-
-#### Basic and graphical fonts:
-
-`sudo pacman -Syu gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra nerd-fonts ttf-font-awesome otf-font-awesome` 
-
-`sudo mkdir -p /etc/fonts/conf.d/ && sudo ln -s /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf /etc/fonts/conf.d/` 
+```shell
+sudo mkdir -p /etc/fonts/conf.d/
+sudo ln -s /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf !$
+```
 
 ---
 
@@ -279,6 +364,16 @@ May require ALSA firmware extras, like `sof-firmware` .
 
 ### Feature Overview
 
+| Compositor | Hyprland |
+| Display Manager | SDDM |
+| Policy Kit | KDE |
+| Status Bar | Waybar |
+| Application Launcher & Menu | Fuzzel |
+| Notifications | SwayNotificationCenter |
+| ~Onscreen Display~ | ~SwayOSD~ |
+| Screenshot | Grimblast (using `grim`, `slurp`, `hyprpicker`) |
+| Wallpaper | swww |
+| Lockscreen | Swaylock |
 Window management & hotkeys - Hyprland  
 Display manager - SDDM  
 Polkit - KDE  
@@ -292,10 +387,28 @@ Lockscreen - swaylock (+ swayidle)
 
 ### Basic Applications
 
-`sudo pacman -Syu firefox` 
+```shell
+sudo pacman -Syu firefox
+```
 
-- Terminal out-of-the-box: `sudo pacman -Syu kitty` 
-- Terminal that requires editing `~/.config/hypr/hyprland.conf`: `sudo pacman -Syu alacritty`
+- Terminal out-of-the-box:
+```shell
+sudo pacman -Syu kitty
+```
+- Terminal that requires editing `~/.config/hypr/hyprland.conf`:
+```shell
+sudo pacman -Syu alacritty
+```
+
+Dolphin (File Browser) + Ark (Archive Browser)
+```shell
+sudo pacman -Syu dolphin dolphin-plugins kdegraphics-thumbnailers libheif qt5-imageformats kdesdk-thumbnailers ffmpegthumbs taglib kompare ark
+```
+
+Pavucontrol (Audio Device Control)
+```shell
+sudo pacman -Syu pavucontrol
+```
 
 ### Window Manager and Display Manager
 
@@ -582,9 +695,6 @@ env = GTK2_RC_FILES,/usr/share/themes/Catppuccin-Macchiato-Standard-Lavender-Dar
 
 ### Applications
 
-Dolphin (File Browser): `sudo pacman -Syu dolphin dolphin-plugins kdegraphics-thumbnailers libheif qt5-imageformats kdesdk-thumbnailers ffmpegthumbs taglib kompare ark`
-
-Pavucontrol (Audio Device Control): `sudo pacman -Syu pavucontrol` 
 
 ### Wallpaper
 
