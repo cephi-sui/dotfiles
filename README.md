@@ -426,7 +426,7 @@ sudo pacman -Syu xdg-desktop-portal-hyprland xdg-desktop-portal-kde xdg-desktop-
 
 Supposedly aids in screensharing:
 ```shell
-paru -S xwaylandvideobridge-bin`
+paru -S xwaylandvideobridge-bin
 ```
 
 Install media and brightness controls.
