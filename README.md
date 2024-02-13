@@ -364,6 +364,7 @@ sudo ln -s /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf !$
 
 ### Feature Overview
 
+|     |     |
 | --- | --- |
 | Compositor | Hyprland |
 | Display Manager | SDDM |
