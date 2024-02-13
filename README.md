@@ -35,8 +35,9 @@ ping archlinux.org
 ```
 timedatectl set-timezone "America/New_York"
 ```
+### Update Keyring
 
-Update keyring in case the ISO is out of date.
+In case the ISO is out of date.
 ```
 pacman -Sy archlinux-keyring
 ```
@@ -52,10 +53,14 @@ fdisk /dev/the_disk_to_be_partitioned
 
 | Mount point | Partition | Partition Type | Size of Choice |
 |-------------|-----------|----------------|----------------|
-| /mnt/boot | /dev/*efi_system_partition* | EFI system partition (fdisk partition type 1) | 1GB |
-| \[SWAP\] | /dev/*swap_partition* | Linux Swap (fdisk partition type 19) | Half of system RAM |
-| /mnt | /dev/*root_partition* | Linux x86-64 root (fdisk partition type 23) | Remainder of the device |
+| /mnt/boot   | /dev/*efi_system_partition* | EFI system partition (type 1) | 1GB                     |
+| \[SWAP\]    | /dev/*swap_partition*       | Linux Swap (type 19)          | x1 or x.5 System RAM    |
+| /mnt        | /dev/*root_partition*       | Linux x86-64 root (type 23)   | Remainder of the device |
 
+[ext4](https://wiki.archlinux.org/title/Ext4) is an old, but stable, filesystem.  
+[Btrfs](https://wiki.archlinux.org/title/Btrfs)
+ and [Bcachefs](https://wiki.archlinux.org/title/Bcachefs)
+ are CoW filesystems that support snapshotting, and may be desired instead.
 ```
 mkfs.ext4 /dev/root_partition -L arch_os
 mkswap /dev/swap_partition -L swap
