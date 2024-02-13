@@ -394,13 +394,13 @@ sudo pacman -Syu firefox
 ```
 
 - Terminal out-of-the-box:
-```shell
-sudo pacman -Syu kitty
-```
+  ```shell
+  sudo pacman -Syu kitty
+  ```
 - Terminal that requires editing `~/.config/hypr/hyprland.conf`:
-```shell
-sudo pacman -Syu alacritty
-```
+  ```shell
+  sudo pacman -Syu alacritty
+  ```
 
 Dolphin (File Browser) + Ark (Archive Browser)
 ```shell
