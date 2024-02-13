@@ -2,7 +2,7 @@ import = ["~/.config/alacritty/catppuccin-macchiato.toml"]
 
 [window]
 padding = { x = 5, y = 5 }
-opacity = 0.8
+opacity = 0.9
 
 [font]
 normal = { family = "FiraMono Nerd Font Mono", style = "Regular"}
