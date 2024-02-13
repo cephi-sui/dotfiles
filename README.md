@@ -379,6 +379,7 @@ sudo ln -s /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf !$
 
 ### Basic Applications
 
+Browser
 ```shell
 sudo pacman -Syu firefox
 ```
