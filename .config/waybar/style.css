@@ -92,6 +92,7 @@ button {
     /* Remove the GTK borders on buttons. */
     border: none;
     border-radius: 0;
+    color: @text;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
