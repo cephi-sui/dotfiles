@@ -8,37 +8,42 @@
     font-size: 14px;
 }
 
+/*                    */
+/* \    /_.  |_  _.._ */
+/*  \/\/(_|\/|_)(_||  */
+/*         /          */
+
 window#waybar {
-    /*background-color: alpha(@base, 0.5);*/
     background-color: transparent;
     color: @text;
-    /* background-color: rgba(43, 48, 59, 0.5); */
-    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
-    /* color: #ffffff; */
     /* transition-property: background-color;
     transition-duration: .5s; */
 }
 
-/*
-window#waybar.hidden {
+/* Example conditional styles based on Waybar state. */
+/*window#waybar.hidden {
     opacity: 0.2;
 }*/
-/* Rules for when the solo tiled window in the workspace is a specific class. */
-/*
-window#waybar.solo {
+/*window#waybar.solo {
     background-color: #FFFFFF;
-}
-window#waybar.firefox {
+}*/
+/* Rule when the solo tiled window in the workspace is a specific class. */
+/*window#waybar.firefox {
     background-color: #000000;
     border: none;
 }*/
+
+/* ___                */
+/*  | _  _ |_|_o._  _ */
+/*  |(_)(_)| |_||_)_> */
+/*              |     */
 
 /* The tooltip itself (background, border) */
 tooltip {
     padding: 0;
     border: 2px solid @lavender;
     border-radius: 18px;
-    background-color: alpha(@base, 0.7);
+    background-color: alpha(@base, 0.9);
 }
 
 /* Clear default GTK styling. */
@@ -50,10 +55,15 @@ tooltip * {
     background-color: transparent;
 }
 
-/* Text of the tooltip */
+/* Tooltip Text Box */
 tooltip label {
     padding: 8px;
 }
+
+/*                     */
+/* |\/| _  _|   | _  _ */
+/* |  |(_)(_||_||(/__> */
+/*                     */
 
 /* Default styling for module sections. */
 .modules-left,
@@ -63,8 +73,13 @@ tooltip label {
 #window {
     border: solid 2px @lavender;
     border-radius: 18px;
-    background-color: alpha(@base, 0.7);
+    background-color: alpha(@base, 0.9);
 }
+
+/*       _    */
+/* |  __|__|_ */
+/* |_(/_|  |_ */
+/*            */
 
 .modules-left {
     border: none;
@@ -145,6 +160,11 @@ window#waybar.empty #window {
     border: none;
 }
 
+/*  _              */
+/* /  _ .__|_ _ ._ */
+/* \_(/_| ||_(/_|  */
+/*                 */
+
 .modules-center {
     margin: 0px 10px;
 }
@@ -152,6 +172,11 @@ window#waybar.empty #window {
 #clock {
     padding: 0px 8px;
 }
+
+/*  _           */
+/* |_)o _ |__|_ */
+/* | \|(_|| ||_ */
+/*      _|      */
 
 .modules-right {
     padding: 0px 3px;
@@ -192,7 +217,7 @@ window#waybar.empty #window {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: alpha(@red, 0.7);
+    background-color: alpha(@red, 0.9);
 }
 
 /* Zero out the padding/margin for the module itself and let
