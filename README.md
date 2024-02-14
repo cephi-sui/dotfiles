@@ -384,9 +384,9 @@ sudo pacman -Syu hyprland sddm && sudo systemctl enable sddm
 ```
 
 #### Scaling
-To get applications to scale properly, go to the scaling section of `~/.config/hypr/hyprland.conf`
+To get X11 applications to scale properly, go to the scaling section of this repo's `~/.config/hypr/hyprland.conf`
 - QT: Env variable `QT_SCALE_FACTOR` (float)
-- GTK: Env variable `GDK_SCALE` (int)
+- GTK: Env variable `GDK_SCALE` (integer)
 
 For Electron applications either:
 - Add `--force-device-scale-factor=<float>` to the `.desktop` in  `/usr/share/applications/`
