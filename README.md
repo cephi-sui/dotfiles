@@ -4,13 +4,10 @@ My Arch Linux dotfiles.
 
 ---
 # Cephi's Arch Linux Installation Steps
-
 [Arch Linux Installation Guide](https://wiki.archlinux.org/title/Installation_guide)
 
 ## Installation Medium Setup
-
 ### Connect Installation Medium to Internet
-
 Connect to the Internet using the interactive `iwctl` command.
 ```shell
 iwctl
@@ -31,12 +28,11 @@ ping archlinux.org
 ```
 
 ### Update System Clock
-
 ```shell
 timedatectl set-timezone "America/New_York"
 ```
-### Update Keyring
 
+### Update Keyring
 In case the ISO is out of date.
 ```shell
 pacman -Sy archlinux-keyring
@@ -45,9 +41,7 @@ pacman -Sy archlinux-keyring
 ---
 
 ## Arch Linux System Installation
-
 ### Disk Partitioning and Formatting
-
 ```shell
 fdisk -l
 fdisk /dev/the_disk_to_be_partitioned
@@ -78,7 +72,6 @@ swapon /dev/swap_partition
 ```
 
 ### System Installation
-
 Install Arch Linux.
 ```shell
 pacstrap -K /mnt base linux linux-firmware
@@ -95,20 +88,17 @@ genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
 ### Chroot
-
 The next few sections depend on being chrooted into the mounted filesystem.
 ```shell
 arch-chroot /mnt
 ```
 
 #### System/CLI Applications
-
 ```shell
 pacman -Syu sudo base-devel git pacman-contrib vim networkmanager ufw man-db man-pages texinfo wget curl w3m tmux unzip openssh
 ```
 
 #### Configuration
-
 Change configuration files, like `/etc/pacman.conf` to add the multilib repo, enable parallel downloads, etc.
 
 Set up time.
@@ -134,7 +124,6 @@ passwd
 ```
 
 #### Bootloader Installation and Configuration
-
 Install the appropriate ucode package for the CPU.
 ```shell
 pacman -Syu amd-ucode
@@ -177,7 +166,6 @@ reboot
 ---
 
 ## Arch Linux System Setup
-
 To dual boot Windows, mount the partition with the Windows bootloader and run this command again. It should have output stating that Windows was found.
 ```shell
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -238,9 +226,7 @@ Add user to sudoers, either through adding the user or uncommenting the
 `EDITOR=vim visudo`
 
 ### Graphics
-
 #### [AMD](https://wiki.archlinux.org/title/AMDGPU)
-
 `mesa` is the DRI driver for 3D acceleration.  
 `vulkan-radeon` adds `Vulkan` support.  
 `libva-mesa-driver` adds `VA-API` accelerated video decoding.  
@@ -254,7 +240,6 @@ reboot
 ```
 
 #### [NVIDIA](https://wiki.archlinux.org/title/NVIDIA)
-
 Set up the [NVIDIA mkinitcpio hook](https://wiki.archlinux.org/title/NVIDIA#pacman_hook) for pacman.
 
 ```shell
@@ -276,7 +261,6 @@ lspci -k | grep -B 2 nvidia
 ```
 
 #### [Intel](https://wiki.archlinux.org/title/Intel_graphics)
-
 `mesa` is the DRI driver for 3D acceleration.  
 `vulkan-intel` adds `Vulkan` support.  
 `intel-media-driver` adds `VA-API` accelerated video decoding.
@@ -291,15 +275,12 @@ reboot
 ---
 
 ## Arch Linux User Setup
-
 Before starting this section, log in as a non-root user.
 
 ### AUR and mkinitcpio Setup
-
 This section could go in the System Setup section, but `rustup` and `paru` install on a per-user basis.
 
 #### Dev Tools
-
 `rustup` is needed for `paru`.
 ```shell
 sudo pacman -Syu rustup
@@ -307,7 +288,6 @@ rustup default stable
 ```
 
 #### AUR Helper (paru)
-
 AUR helpers are not recommended, but are nice to have.  
 `yay` is the most popular and known-to-work. But `paru` is written in Rust so...
 ```shell
@@ -318,16 +298,13 @@ makepkg -si
 ```
 
 #### mkinitcpio Firmware
-
 Install firmware for mkinitcpio so it stops reporting warnings.
 ```shell
 paru -S mkinitcpio-firmware
 ```
 
 ### Desktop Environment Pre-Setup
-
 #### Audio
-
 PipeWire is a multimedia framework which supports all sound servers.
 ```shell
 sudo pacman -Syu pipewire pipewire-audio pipewire-jack pipewire-pulse pipewire-alsa
@@ -335,7 +312,6 @@ sudo pacman -Syu pipewire pipewire-audio pipewire-jack pipewire-pulse pipewire-a
 Some speakers may require ALSA firmware extras, like `sof-firmware`.
 
 #### Bluetooth
-
 ```shell
 sudo pacman -Syu bluez bluez-utils && sudo systemctl enable --now bluetooth.service
 ```
@@ -346,7 +322,6 @@ sudo pacman -Syu blueman
 ```
 
 #### Basic and Graphical Fonts
-
 ```shell
 sudo pacman -Syu gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra nerd-fonts
 ```
@@ -359,9 +334,7 @@ sudo ln -s /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf !$
 ---
 
 ## Hyprland
-
 ### Feature Overview
-
 |     |     |
 | --- | --- |
 | Compositor | Hyprland |
@@ -376,7 +349,6 @@ sudo ln -s /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf !$
 | Lockscreen | Swaylock |
 
 ### Basic Applications
-
 Browser
 ```shell
 sudo pacman -Syu firefox
@@ -407,13 +379,11 @@ sudo pacman -Syu htop nvtop btop neofetch speedtest-cli
 ```
 
 ### Window Manager and Display Manager
-
 ```shell
 sudo pacman -Syu hyprland sddm && sudo systemctl enable sddm
 ```
 
 #### Scaling
-
 To get applications to scale properly, go to the scaling section of `~/.config/hypr/hyprland.conf`
 - QT: Env variable `QT_SCALE_FACTOR` (float)
 - GTK: Env variable `GDK_SCALE` (int)
@@ -423,7 +393,6 @@ For Electron applications either:
 - Just use `ctrl++` in the application itself.
 
 #### Necessary Packages
-
 ```shell
 sudo pacman -Syu xdg-desktop-portal-hyprland xdg-desktop-portal-kde xdg-desktop-portal-gtk qt5-wayland qt6-wayland jq
 ```
@@ -441,7 +410,6 @@ sudo pacman -Syu playerctl brightnessctl
 If desired, install `wev` ( `ctrl` + `c`  to exit ) to determine keycodes for `~/.config/hypr/hyprland.conf`
 
 ### Screenshotting
-
 For screenshots, the `grimblast` script will freeze the screen using
  `hyprpicker`, select a region using `slurp`, and screenshot using `grim`.
 
@@ -458,7 +426,6 @@ git clone https://github.com/hyprwm/contrib.git && cd contrib/grimblast && make 
 ``` 
 
 ### Policy Kit
-
 ```shell
 sudo pacman -Syu polkit-kde-agent
 ```
@@ -469,7 +436,6 @@ exec-once=/usr/lib/polkit-kde-authentication-agent-1
 ```
 
 ### Screen Rotation (For Tablet PCs)
-
 Install `iio-hyprland`, which will pull `iio-sensor-proxy` as a dependency.
 ```shell
 paru -S iio-hyprland
@@ -489,7 +455,6 @@ exec-once = iio-sensor-proxy & iio-hyprland
 ```
 
 ### Lockscreen
-
 ```shell
 sudo pacman -Syu swaylock
 ```
@@ -502,7 +467,6 @@ swaylock --daemonize --indicator-caps-lock --show-failed-attempts
 This command will get called with the `fuzzel-power-menu` script (see below).
 
 ### Application Launcher & Menu
-
 Fuzzel is a smaller, faster application launcher than Rofi, while still providing the base dmenu functionality necessary.
 
 ```shell
