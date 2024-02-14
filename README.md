@@ -44,7 +44,9 @@ pacman -Sy archlinux-keyring
 
 ---
 
-## Disk Partitioning and Formatting
+## Arch Linux System Installation
+
+### Disk Partitioning and Formatting
 
 ```shell
 fdisk -l
@@ -75,11 +77,7 @@ mount --mkdir /dev/efi_system_partition /mnt/boot
 swapon /dev/swap_partition
 ```
 
----
-
-## Arch Linux System Installation
-
-### Initial Setup
+### System Installation
 
 Install Arch Linux.
 ```shell
@@ -103,10 +101,10 @@ The next few sections depend on being chrooted into the mounted filesystem.
 arch-chroot /mnt
 ```
 
-#### Initial Applications
+#### System/CLI Applications
 
 ```shell
-pacman -Syu sudo base-devel git pacman-contrib vim networkmanager ufw man-db man-pages texinfo wget curl w3m tmux unzip openssh htop nvtop btop neofetch speedtest-cli
+pacman -Syu sudo base-devel git pacman-contrib vim networkmanager ufw man-db man-pages texinfo wget curl w3m tmux unzip openssh
 ```
 
 #### Configuration
@@ -403,13 +401,18 @@ Pavucontrol (Audio Device Control)
 sudo pacman -Syu pavucontrol
 ```
 
+System Monitoring
+```shell
+sudo pacman -Syu htop nvtop btop neofetch speedtest-cli
+```
+
 ### Window Manager and Display Manager
 
 ```shell
 sudo pacman -Syu hyprland sddm && sudo systemctl enable sddm
 ```
 
-#### Fun DPI Display Fuckery
+#### Scaling
 
 To get applications to scale properly, go to the scaling section of `~/.config/hypr/hyprland.conf`
 - QT: Env variable `QT_SCALE_FACTOR` (float)
@@ -475,15 +478,15 @@ paru -S iio-hyprland
 Run `hyprctl monitors` to obtain desired monitor for rotation.
 
 > It may be necessary to specify the monitor in `~/.config/hypr/hyprland.conf` like so.
-  ```ini
-  monitor = $mainMoni,preferred,auto,auto
-  ```
+```ini
+monitor = $mainMoni,preferred,auto,auto
+```
 
 Run the programs at startup.
 > `~/.config/hypr/hyprland.conf`
-  ```shell
-  exec-once = iio-sensor-proxy & iio-hyprland
-  ```
+```ini
+exec-once = iio-sensor-proxy & iio-hyprland
+```
 
 ### Lockscreen
 
@@ -492,7 +495,6 @@ sudo pacman -Syu swaylock
 ```
 
 Swaylock can be run with the following command:
-
 ```shell
 swaylock --daemonize --indicator-caps-lock --show-failed-attempts
 ```
@@ -508,16 +510,14 @@ sudo pacman -Syu fuzzel
 ```
 
 > `~/.config/hypr/hyprland.conf`
-  ```ini
-  bindr = $mainMod, Super_L, exec, killall fuzzel || fuzzel
-  ```
+```ini
+bindr = $mainMod, Super_L, exec, killall fuzzel || fuzzel
+```
 
 #### Clipboard History
-
 See below.
 
 #### Emoji Selector
-
 Bemoji has history built-in and sends the emoji list via dmenu.  
 It also allows for easily adding new entries like kaomoji :D
 
@@ -527,21 +527,19 @@ sudo pacman -Syu bemoji
 
 Bemoji is run with Fuzzel as its picker.
 ```shell
-https://github.com/hyprwm/contrib.git
+BEMOJI_PICKER_CMD="fuzzel -d" bemoji -t
 ```
 
 > `~/.config/hypr/hyprland.conf` 
-  ```ini
-  bind = $mainMod, 60, exec, killall fuzzel; BEMOJI_PICKER_CMD="fuzzel -d" bemoji -t # Super + .
-  ```
+```ini
+bind = $mainMod, 60, exec, killall fuzzel; BEMOJI_PICKER_CMD="fuzzel -d" bemoji -t # Super + .
+```
 
 #### Wi-Fi Menu
-
 A basic, custom-made nmcli frontend script stored in `~/.config/fuzzel/` using Material Design icons to match the riced Waybar.
 
 #### Power Menu
-
- A script stored in `~/.config/fuzzel/` which makes use of `swaylock` (see above).
+A script stored in `~/.config/fuzzel/` which makes use of `swaylock` (see above).
 
 One fun way to call this menu is via the power button.  
 To do so, modify `/etc/systemd/logind.conf` to ignore the power key.  
@@ -552,14 +550,12 @@ bind = , XF86PowerOff, exec, ~/.config/fuzzel/fuzzel-power-menu
 ```
 
 ### Status Bar
-
 Waybar is a simple GTK-based status bar.
 ```shell
 sudo pacman -Syu waybar
 ```
 
 #### Notes on editing config
-
 - Uncomment the layer top line so that waybar appears on top of windows
 - Remove/add desired modules
 - Replace "sway" with "hyprland"
@@ -567,7 +563,6 @@ sudo pacman -Syu waybar
 - <https://www.reddit.com/r/hyprland/comments/12gn52e/comment/jfofgv4/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button> Monitor-independent workspaces idea which is turned into a script for these dotfiles.
 
 ### Clipboard
-
 Cliphist is a program that stores clipboard history that can be read out later.
 ```shell
 sudo pacman -Syu cliphist
@@ -581,7 +576,6 @@ bind = $mainMod, V, exec, killall fuzzel; cliphist list | fuzzel -d | cliphist d
 ```
 
 ### Notifications
-
 SwayNotificationCenter is a nice GTK-based notification center which supports
  widgets for various purposes, like music.
 ```shell
@@ -595,7 +589,6 @@ bind = $mainMod, N, exec, swaync-client -t -sw
 ```
 
 ### Wallpaper
-
 - Static:
   ```shell
   sudo pacman -Syu hyprpaper
@@ -606,7 +599,6 @@ bind = $mainMod, N, exec, swaync-client -t -sw
   ```
 
 ### Default Applications
-
 ```shell
 sudo pacman -Syu perl-file-mimeinfo
 ```
@@ -617,25 +609,23 @@ mimeopen -d <filename>.<filetype>
 ```
 
 ### Aesthetics
-
 #### Font
-
 FiraMono Nerd Font.  
 FiraMono Nerd Font Mono and FiraMono Nerd Font Propo are used as needed.  
 FiraCode is not used to avoid having to deal with ligatures.
 
 #### Color Scheme
-
 Catppuccin Macchiato Lavender.  
 Provides a nice balance as a dark mode that isn't too dark.  
-Lavender is simply a preferred accent.
+Lavender is simply a nice pastel purple accent.
 
 #### Hyprland
-
 <https://github.com/catppuccin/hyprland>
 
-#### SDDM
+#### Alacritty
+<https://github.com/catppuccin/alacritty>
 
+#### SDDM
 <https://github.com/Kangie/sddm-sugar-candy>
 
 ```shell
@@ -653,50 +643,36 @@ sudo cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf
   ```
 
 #### Swaylock
-
 <https://github.com/catppuccin/swaylock>
 
-#### Alacritty
-
-<https://github.com/catppuccin/alacritty>
-
 #### Fuzzel
-
 <https://github.com/catppuccin/fuzzel>
 
 #### Waybar
-
 <https://github.com/catppuccin/waybar>
 
 #### SwayNotificationCenter
-
 <https://github.com/catppuccin/swaync>
 
 #### Qt & GTK
-
 <https://wiki.archlinux.org/title/Uniform_look_for_Qt_and_GTK_applications>
 
 ##### Qt
-
 ```shell
 sudo pacman -Syu qt5ct kvantum
 ```
 
 <https://github.com/catppuccin/Kvantum>
-
 > `~/.config/hypr/hyprland.conf`
   ```
   env = QT_QPA_PLATFORMTHEME,qt5ct
   ```
 
-Using qt5ct, set the style to Kvantum.
-
-Using Kvantum, set the theme to Catppuccin and enable transparency as necessary.
-
+Using qt5ct, set the style to Kvantum.  
+Using Kvantum, set the theme to Catppuccin and enable transparency as necessary.  
 **NOTE**: Kvantum uses "reduction in opacity" rather than just "opacity", so if the desired opacity is 70%, use 30%.
 
 ##### GTK
-
 ```shell
 sudo pacman -Syu nwg-look gnome-themes-extra
 ```
@@ -712,7 +688,6 @@ Use nwg-look to set the theme. If that fails, the theme can be manually set.
   ```
 
 #### Icons
-
 ```shell
 sudo pacman -S papirus-icon-theme
 ```
@@ -721,11 +696,9 @@ paru -S papirus-folders-catppuccin-git && papirus-folders -h
 ```
 
 #### Wallpaper
-
 <https://www.artstation.com/artwork/4Xa124>
 
 #### Firefox
-
 Improving the Firefox experience.  
 <https://github.com/yokoffing/Betterfox>
 
