@@ -90,6 +90,7 @@ button {
     /* Use box-shadow instead of border so the text isn't offset */
     /* box-shadow: inset 0 -3px transparent; */
     /* Remove the GTK borders on buttons. */
+    box-shadow: inset 0 0 transparent;
     border: none;
     border-radius: 0;
     color: @text;
@@ -127,6 +128,8 @@ button:hover {
     /* Zeroes out the default GTK padding.*/
     padding: 0;
     margin: 0px 2px;
+    /*transition-property: background-color;
+    transition-duration: .5s;*/
 }
 
 /* Default GTK styling makes text become highlighted. */
@@ -148,11 +151,20 @@ button:hover {
 
 #window {
     padding: 0px 8px;
+
+    /* This transition matches the window animations in Hyprland.
+       The last bezier value is increased to make the transition more visible.
+       0.4 corresponds to an animation speed of 4 in Hyprland. */
+    transition-property: padding;
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.1, 1.0, 0.3, 1.5);
 }
 
 /* Bold the window title if the workspace is zoomed. */
 window#waybar.fullscreen #window {
     font-weight: bold;
+    
+    padding: 0px 16px;
 }
 
 /* Remove the window widget if there is no window in workspace. */

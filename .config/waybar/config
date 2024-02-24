@@ -49,8 +49,9 @@
     "clock": {
         // "timezone": "America/New_York",
         // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "tooltip-format": "<small>{calendar}</small>",
+        "format": "{:%I:%M}",
         "format-alt": "{:%Y/%m/%d}",
+        "tooltip-format": "<small>{calendar}</small>",
         "calendar": {
             "mode": "year",
             "mode-mon-col"  : 3,
