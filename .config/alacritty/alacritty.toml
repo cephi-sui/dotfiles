@@ -1,8 +1,14 @@
-import = ["~/.config/alacritty/catppuccin-macchiato.toml"]
+import = ["~/.config/alacritty/catppuccin-mocha.toml"]
 
 [window]
 padding = { x = 5, y = 5 }
-opacity = 0.9
+dynamic_padding = true
+opacity = 0.8
 
 [font]
 normal = { family = "FiraMono Nerd Font Mono", style = "Regular"}
+
+[keyboard]
+bindings = [
+   { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" }
+]

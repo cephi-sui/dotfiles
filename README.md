@@ -379,8 +379,9 @@ sudo pacman -Syu htop nvtop btop neofetch speedtest-cli
 ```
 
 ### Window Manager and Display Manager
+`Weston` is a Wayland compositor that `SDDM` uses by default.
 ```shell
-sudo pacman -Syu hyprland sddm && sudo systemctl enable sddm
+sudo pacman -Syu hyprland sddm weston && sudo systemctl enable sddm
 ```
 
 #### Scaling

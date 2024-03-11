@@ -1,3 +1,6 @@
+set termguicolors
+colorscheme catppuccin_macchiato
+
 syntax on
 set number
 

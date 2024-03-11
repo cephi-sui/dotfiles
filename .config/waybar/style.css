@@ -1,4 +1,4 @@
-@import "macchiato.css";
+@import "mocha.css";
 
 * {
     /* FiraMono is my font of choice, the Propo version is required to align
@@ -6,6 +6,7 @@
     font-family: "FiraMono Nerd Font Propo", "Hack Nerd Font Propo", "Inconsolata Nerd Font Propo", "JetBrainsMono Nerd Font Propo", sans-serif;
     font-weight: normal;
     font-size: 14px;
+    color: @text;
 }
 
 /*                    */
@@ -15,7 +16,6 @@
 
 window#waybar {
     background-color: transparent;
-    color: @text;
     /* transition-property: background-color;
     transition-duration: .5s; */
 }
@@ -41,9 +41,10 @@ window#waybar {
 /* The tooltip itself (background, border) */
 tooltip {
     padding: 0;
-    border: 2px solid @lavender;
+    /*border: 2px solid @lavender;*/
+    border: 2px solid transparent;
     border-radius: 18px;
-    background-color: alpha(@base, 0.9);
+    background-color: alpha(@base, 0.8);
 }
 
 /* Clear default GTK styling. */
@@ -71,9 +72,10 @@ tooltip label {
 .modules-right,
 #workspaces,
 #window {
-    border: solid 2px @lavender;
+    /*border: solid 2px @lavender;*/
+    border: 2px solid transparent;
     border-radius: 18px;
-    background-color: alpha(@base, 0.9);
+    background-color: alpha(@base, 0.8);
 }
 
 /*       _    */
@@ -154,10 +156,10 @@ button:hover {
 
     /* This transition matches the window animations in Hyprland.
        The last bezier value is increased to make the transition more visible.
-       0.4 corresponds to an animation speed of 4 in Hyprland. */
+       0.3 corresponds to an animation speed of 3 in Hyprland. */
     transition-property: padding;
-    transition-duration: 0.4s;
-    transition-timing-function: cubic-bezier(0.1, 1.0, 0.3, 1.5);
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.1, 1.0, 0.3, 1.8);
 }
 
 /* Bold the window title if the workspace is zoomed. */
@@ -184,6 +186,10 @@ window#waybar.empty #window {
 
 #clock {
     padding: 0px 8px;
+}
+
+#clock label:hover {
+    background-color: white;
 }
 
 /*  _           */
@@ -230,7 +236,7 @@ window#waybar.empty #window {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: alpha(@red, 0.9);
+    background-color: alpha(@red, 0.8);
 }
 
 /* Zero out the padding/margin for the module itself and let

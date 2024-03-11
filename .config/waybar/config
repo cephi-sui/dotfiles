@@ -1,9 +1,10 @@
 {
+    "reload_style_on_change": true,
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
+    "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "margin": "10 10 0 10", // 10px to match Hyprland gaps, 0px on the bottom to account for Hyprland gaps.
+    "margin": "8 8 0 8", // 10px to match Hyprland gaps, 0px on the bottom to account for Hyprland gaps.
     "spacing": 0, // Gaps between modules (0 because it's handled in style.css)
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "hyprland/workspaces#special", "hyprland/window"],
