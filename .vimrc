@@ -1,5 +1,5 @@
 set termguicolors
-colorscheme catppuccin_macchiato
+colorscheme catppuccin_mocha
 
 syntax on
 set number
