@@ -9,7 +9,8 @@
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "hyprland/workspaces#special", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "keyboard-state#c", "keyboard-state#n", "keyboard-state#s", "pulseaudio#output", "pulseaudio#input", "cpu", "memory", "temperature", "custom/battery", "bluetooth", "network"],
+    //"modules-right": ["tray", "keyboard-state#c", "keyboard-state#n", "keyboard-state#s", "pulseaudio#output", "pulseaudio#input", "cpu", "memory", "temperature", "custom/battery", "bluetooth", "network"],
+    "modules-right": ["tray", "keyboard-state#c", "keyboard-state#n", "keyboard-state#s", "pulseaudio#output", "pulseaudio#input", "cpu", "memory", "temperature", "bluetooth", "network"],
     // Modules configuration
     "hyprland/workspaces": {
         // "all-outputs": true,
@@ -152,18 +153,18 @@
         "format": "{icon}",
         "format-icons": ["󰃞", "󰃟", "󰃠"]
     },
-    // "custom/battery": {
-    //     "format": "{icon} {}%",
-    //     "format-icons": {
-    //         "fully-charged": "󰁹",
-    //         "pending-charge": "󰂄",
-    //         "charging": "󰂄",
-    //         "pending-discharge": "󰂑",
-    //         "discharging": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    //     },
-    //     "exec": "stdbuf -o L $HOME/.config/waybar/battery.sh BAT1 2> /dev/null",
-    //     "return-type": "json"
-    // },
+    "custom/battery": {
+        "format": "{icon} {}%",
+        "format-icons": {
+            "fully-charged": "󰁹",
+            "pending-charge": "󰂄",
+            "charging": "󰂄",
+            "pending-discharge": "󰂑",
+            "discharging": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+        },
+        "exec": "stdbuf -o L $HOME/.config/waybar/battery.sh BAT1 2> /dev/null",
+        "return-type": "json"
+    },
     "bluetooth": {
         // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
         // "format": "󰂯 {status}",
