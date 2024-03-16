@@ -3,7 +3,7 @@
 * {
     /* FiraMono is my font of choice, the Propo version is required to align
        icons correctly. */
-    font-family: "FiraMono Nerd Font Propo", "Hack Nerd Font Propo", "Inconsolata Nerd Font Propo", "JetBrainsMono Nerd Font Propo", sans-serif;
+    font-family: "FiraMono Nerd Font Propo";
     font-weight: normal;
     font-size: 14px;
     color: @text;
@@ -44,7 +44,7 @@ tooltip {
     /*border: 2px solid @lavender;*/
     border: 2px solid transparent;
     border-radius: 18px;
-    background-color: alpha(@base, 0.8);
+    background-color: alpha(@base, 0.7);
 }
 
 /* Clear default GTK styling. */
@@ -75,7 +75,7 @@ tooltip label {
     /*border: solid 2px @lavender;*/
     border: 2px solid transparent;
     border-radius: 18px;
-    background-color: alpha(@base, 0.8);
+    background-color: alpha(@base, 0.7);
 }
 
 /*       _    */
@@ -236,7 +236,7 @@ window#waybar.empty #window {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: alpha(@red, 0.8);
+    background-color: alpha(@red, 0.7);
 }
 
 /* Zero out the padding/margin for the module itself and let
