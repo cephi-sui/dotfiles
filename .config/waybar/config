@@ -152,18 +152,18 @@
         "format": "{icon}",
         "format-icons": ["󰃞", "󰃟", "󰃠"]
     },
-    "custom/battery": {
-        "format": "{icon} {}%",
-        "format-icons": {
-            "fully-charged": "󰁹",
-            "pending-charge": "󰂄",
-            "charging": "󰂄",
-            "pending-discharge": "󰂑",
-            "discharging": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-        },
-        "exec": "stdbuf -o L $HOME/.config/waybar/battery.sh BAT1 2> /dev/null",
-        "return-type": "json"
-    },
+    // "custom/battery": {
+    //     "format": "{icon} {}%",
+    //     "format-icons": {
+    //         "fully-charged": "󰁹",
+    //         "pending-charge": "󰂄",
+    //         "charging": "󰂄",
+    //         "pending-discharge": "󰂑",
+    //         "discharging": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    //     },
+    //     "exec": "stdbuf -o L $HOME/.config/waybar/battery.sh BAT1 2> /dev/null",
+    //     "return-type": "json"
+    // },
     "bluetooth": {
         // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
         // "format": "󰂯 {status}",
@@ -182,9 +182,9 @@
         // "format-wifi": "{essid} ({signalStrength}%) ",
         "format-wifi": "{icon}",
 	    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-        // "format-ethernet": "{ipaddr}/{cidr} ",
-        "format-ethernet": "",
-        "format-linked": "{ifname} ",
+        // "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+        "format-ethernet": "󰈀",
+        "format-linked": "{ifname} 󰈀",
         "format-disconnected": "󰤫",
         // "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "tooltip-format": "{ifname} via {gwaddr}",
