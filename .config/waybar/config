@@ -123,7 +123,7 @@
             "default": ["󰕿", "󰖀", "󰕾"]
         },
         "reverse-scroll": true, // Only applies to trackpad.
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol -t 3"
     },
     "pulseaudio#input": {
         "format": "{format_source}",
@@ -139,8 +139,8 @@
         "format": "{}%"
     },
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        // "thermal-zone": 0,
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{icon} {temperatureC}°C",
