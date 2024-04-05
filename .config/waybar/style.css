@@ -3,7 +3,7 @@
 * {
     /* FiraMono is my font of choice, the Propo version is required to align
        icons correctly. */
-    font-family: "FiraMono Nerd Font Propo";
+    font-family: "FiraMono Nerd Font Propo", "FiraCode Nerd Font Propo", sans-serif;
     font-weight: normal;
     font-size: 14px;
     color: @text;

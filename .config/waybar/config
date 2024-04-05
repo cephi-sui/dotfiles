@@ -122,7 +122,7 @@
             "default": ["󰕿", "󰖀", "󰕾"]
         },
         "reverse-scroll": true, // Only applies to trackpad.
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol -t 3"
     },
     "pulseaudio#input": {
         "format": "{format_source}",
