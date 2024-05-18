@@ -1,3 +1,36 @@
 [submodule ".tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "git/Betterfox"]
+	path = git/Betterfox
+	url = https://github.com/yokoffing/Betterfox.git
+[submodule "git/catppuccin-vim"]
+	path = git/catppuccin-vim
+	url = https://github.com/catppuccin/vim
+[submodule "git/catppuccin-btop"]
+	path = git/catppuccin-btop
+	url = https://github.com/catppuccin/btop
+[submodule "git/catppuccin-tmux"]
+	path = git/catppuccin-tmux
+	url = https://github.com/catppuccin/tmux
+[submodule "git/catppuccin-alacritty"]
+	path = git/catppuccin-alacritty
+	url = https://github.com/catppuccin/alacritty
+[submodule "git/catppuccin-papirus-folders"]
+	path = git/catppuccin-papirus-folders
+	url = https://github.com/catppuccin/papirus-folders
+[submodule "git/catppuccin-kvantum"]
+	path = git/catppuccin-kvantum
+	url = https://github.com/catppuccin/Kvantum
+[submodule "git/catppuccin-gtk"]
+	path = git/catppuccin-gtk
+	url = https://github.com/catppuccin/gtk
+[submodule "git/catppuccin-waybar"]
+	path = git/catppuccin-waybar
+	url = https://github.com/catppuccin/waybar
+[submodule "git/catppuccin-grub"]
+	path = git/catppuccin-grub
+	url = https://github.com/catppuccin/grub
+[submodule "git/catppuccin-fuzzel"]
+	path = git/catppuccin-fuzzel
+	url = https://github.com/catppuccin/fuzzel
