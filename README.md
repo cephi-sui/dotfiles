@@ -2,6 +2,21 @@
 
 My Arch Linux dotfiles.
 
+To use, make sure `git` and `stow` are installed and just do the following:
+```sh
+git clone https://github.com/cephi-sui/dotfiles ~/.files && cd ~/.files && stow .
+```
+
+ This will symlink all of the config files into the home directory.
+
+ Then, for Firefox customizations, do:
+ ```sh
+ln ~/.files/git/Betterfox/user.js ~/.mozilla/firefox/<profile>.default-release/.
+```
+
+
+IGNORE BELOW. GO TO WIKI FOR THIS INFO
+
 ---
 # Cephi's Arch Linux Installation Steps
 [Arch Linux Installation Guide](https://wiki.archlinux.org/title/Installation_guide)
