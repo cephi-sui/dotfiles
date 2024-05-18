@@ -1,0 +1,5 @@
+[General]
+theme=Catppuccin-Mocha-Lavender
+
+[Applications]
+Catppuccin-Mocha-Lavender=polkit-kde-authentication-agent-1, org.kde.polkit-kde-authentication-agent-1
