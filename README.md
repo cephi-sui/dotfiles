@@ -11,7 +11,7 @@ git clone https://github.com/cephi-sui/dotfiles ~/.files && cd ~/.files && stow 
 
  Then, for Firefox customizations, do:
  ```sh
-ln ~/.files/git/Betterfox/user.js ~/.mozilla/firefox/<profile>.default-release/.
+ln ~/.files/git/Betterfox/user.js ~/.mozilla/firefox/*.default-release/.
 ```
 
 
