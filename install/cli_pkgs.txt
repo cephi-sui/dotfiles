@@ -1,0 +1,16 @@
+pacman-contrib  # Extra pacman tools.
+sudo            # For performing commands as other users (primarily root).
+base-devel      # Development tools like gcc for compilation.
+git             # Goddamn idiotic truckload of shit.
+vim             # :)
+man-db          # Manuals.
+man-pages       # Manuals.
+texinfo         # Manuals.
+networkmanager  # Primary networking application.
+ufw             # Firewall.
+wget
+curl
+w3m             # CLI web viewer.
+tmux            # Terminal multiplexer.
+unzip
+openssh
