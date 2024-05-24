@@ -9,3 +9,7 @@ w3m             # CLI web viewer.
 tmux            # Terminal multiplexer.
 unzip
 openssh
+btop            # Full system monitoring.
+htop            # CPU monitoring.
+nvtop           # GPU monitoring.
+speedtest-cli   # Internet connection speed test.
