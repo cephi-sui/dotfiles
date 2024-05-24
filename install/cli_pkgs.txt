@@ -1,7 +1,5 @@
 pacman-contrib  # Extra pacman tools.
-sudo            # For performing commands as other users (primarily root).
 base-devel      # Development tools like gcc for compilation.
-git             # Goddamn idiotic truckload of shit.
 vim             # :)
 man-db          # Manuals.
 man-pages       # Manuals.
