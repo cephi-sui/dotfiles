@@ -1,11 +1,8 @@
 pacman-contrib  # Extra pacman tools.
 base-devel      # Development tools like gcc for compilation.
-vim             # :)
 man-db          # Manuals.
 man-pages       # Manuals.
 texinfo         # Manuals.
-networkmanager  # Primary networking application.
-ufw             # Firewall.
 wget
 curl
 w3m             # CLI web viewer.
