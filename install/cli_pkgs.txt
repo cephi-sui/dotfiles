@@ -5,8 +5,6 @@ man-pages       # Manuals.
 texinfo         # Manuals.
 wget
 curl
-w3m             # CLI web viewer.
-tmux            # Terminal multiplexer.
 unzip
 openssh
 btop            # Full system monitoring.
