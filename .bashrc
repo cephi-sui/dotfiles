@@ -13,5 +13,3 @@ alias unhide='nmcli c down us-nyc-wg-604 && sudo tailscale up'
 PS1='[\u@\h \W]\$ '
 
 export EDITOR=vim
-
-neofetch --disable WM
