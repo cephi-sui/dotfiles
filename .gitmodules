@@ -13,3 +13,6 @@
 [submodule "git/catppuccin-alacritty"]
 	path = git/catppuccin-alacritty
 	url = https://github.com/catppuccin/alacritty
+[submodule "git/catppuccin-tmux"]
+	path = git/catppuccin-tmux
+	url = https://github.com/catppuccin/tmux.git
