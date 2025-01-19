@@ -1,5 +1,5 @@
 set termguicolors
-colorscheme catppuccin_mocha
+colorscheme catppuccin_macchiato
 
 " Syntax Highlighting
 filetype plugin on

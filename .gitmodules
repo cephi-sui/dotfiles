@@ -10,3 +10,6 @@
 [submodule "git/catppuccin-adwaita"]
 	path = git/catppuccin-adwaita
 	url = https://github.com/claymorwan/adw-catppuccin
+[submodule "git/catppuccin-alacritty"]
+	path = git/catppuccin-alacritty
+	url = https://github.com/catppuccin/alacritty
