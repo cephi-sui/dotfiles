@@ -7,3 +7,6 @@
 [submodule "git/catppuccin-vim"]
 	path = git/catppuccin-vim
 	url = https://github.com/catppuccin/vim
+[submodule "git/catppuccin-adwaita"]
+	path = git/catppuccin-adwaita
+	url = https://github.com/claymorwan/adw-catppuccin

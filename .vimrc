@@ -21,6 +21,5 @@ set expandtab
 set number
 set incsearch
 set hlsearch
-set spell
 set colorcolumn=81
 set wrap
