@@ -6,6 +6,7 @@ Set theme to dark in settings and adw-gtk3-dark in tweaks
 ```shell
 gsettings set org.gnome.desktop.wm.preferences button-layout appmenu
 gsettings set org.gnome.Console audible-bell false
+
 gsettings set org.gnome.desktop.wm.keybindings close "['<Super>q']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys control-center "['<Super>i']"
