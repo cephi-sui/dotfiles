@@ -19,3 +19,6 @@
 [submodule "git/BetterFox"]
 	path = git/BetterFox
 	url = https://github.com/yokoffing/BetterFox
+[submodule "git/catppuccin-btop"]
+	path = git/catppuccin-btop
+	url = https://github.com/catppuccin/btop
