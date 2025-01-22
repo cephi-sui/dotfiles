@@ -3,6 +3,10 @@
 git submodule init
 git submodule update
 
+# AUR Helper
+makepkg -siD git/paru-bin
+bash -c 'cd git/paru-bin && git clean -df'
+
 # CLI Applications
 sudo pacman -Syu --needed pacman-contrib base-devel man-db man-pages texinfo
 sudo pacman -Syu --needed wget curl unzip openssh

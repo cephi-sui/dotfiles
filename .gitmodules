@@ -19,3 +19,6 @@
 [submodule "git/catppuccin-btop"]
 	path = git/catppuccin-btop
 	url = https://github.com/catppuccin/btop
+[submodule "git/paru-bin"]
+	path = git/paru-bin
+	url = https://aur.archlinux.org/paru-bin.git
