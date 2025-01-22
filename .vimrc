@@ -1,5 +1,8 @@
-set termguicolors
-colorscheme catppuccin_macchiato
+" Color Theming (if in supported terminal)
+if $TERM != 'linux'
+    set termguicolors
+    colorscheme catppuccin_macchiato
+endif
 
 " Syntax Highlighting
 filetype plugin on
