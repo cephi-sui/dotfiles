@@ -1,9 +1,6 @@
 [submodule "git/dotfiles.wiki"]
 	path = git/dotfiles.wiki
 	url = https://github.com/cephi-sui/dotfiles.wiki
-[submodule "git/dotfiles"]
-	path = git/dotfiles
-	url = ssh://git@github.com/cephi-sui/dotfiles
 [submodule "git/catppuccin-vim"]
 	path = git/catppuccin-vim
 	url = https://github.com/catppuccin/vim
