@@ -3,6 +3,13 @@
 git submodule init
 git submodule update
 
+# Stow Dotfiles
+mkdir -p ~/.config
+mkdir -p ~/.local/share
+mv -v ~/.bashrc ~/.bashrc.bak
+stow -v .
+rm -v ~/.bashrc.bak
+
 # AUR Helper
 makepkg -siD git/paru-bin
 bash -c 'cd git/paru-bin && git clean -df'
@@ -10,31 +17,21 @@ bash -c 'cd git/paru-bin && git clean -df'
 # CLI Applications
 sudo pacman -Syu --needed pacman-contrib base-devel
 sudo pacman -Syu --needed man-db man-pages texinfo
-sudo pacman -Syu --needed wget curl unzip openssh
+sudo pacman -Syu --needed wget curl unzip openssh nmap openbsd-netcat
 sudo pacman -Syu --needed btop htop nvtop speedtest-cli
 
 # Audio
-sudo pacman -Syu --needed pipewire pipewire-audio pipewire-jack pipewire-pulse wireplumber
+sudo pacman -Syu --needed pipewire pipewire-audio pipewire-jack pipewire-pulse wireplumber pulsemixer
 
 # Fonts
 sudo pacman -Syu --needed gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra nerd-fonts
 
 # GUI Applications
-## Terminal
-sudo pacman -Syu --needed alacritty
-## Firefox
-sudo pacman -Syu --needed firefox 
+sudo pacman -Syu --needed alacritty firefox mpv
+
+# Firefox Setup
 firefox --headless --screenshot /dev/null > /dev/null
 ln -v git/BetterFox/user.js ~/.mozilla/firefox/*.default-release/.
-## Videos
-sudo pacman -Syu mpv
-
-# Stow Dotfiles
-mkdir -p ~/.config
-mkdir -p ~/.local/share
-mv -v ~/.bashrc ~/.bashrc.bak
-stow -v .
-rm -v ~/.bashrc.bak
 
 # GNOME
 sudo pacman -Syu --needed gnome gnome-tweaks gnome-browser-connector dconf-editor file-roller
@@ -57,3 +54,11 @@ echo "Enabling extensions..."
 gnome-extensions enable status-icons@gnome-shell-extensions.gcampax.github.com
 gnome-extensions enable drive-menu@gnome-shell-extensions.gcampax.github.com
 gnome-extensions enable launch-new-instance@gnome-shell-extensions.gcampax.github.com
+
+# Hyprland
+sudo pacman -Syu --needed hyprland hyprpolkitagent hyprlock hyprpicker
+sudo pacman -Syu --needed jq playerctl brightnessctl
+sudo pacman -Syu --needed hyprpicker grim slurp
+sudo pacman -Syu --needed fuzzel cliphist
+paru -S bemoji
+bash -c 'cd git/hyprwm-contrib/grimblast && sudo make install'
