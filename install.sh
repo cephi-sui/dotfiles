@@ -58,7 +58,7 @@ gnome-extensions enable launch-new-instance@gnome-shell-extensions.gcampax.githu
 # Hyprland
 sudo pacman -Syu --needed hyprland hyprpolkitagent hyprlock hyprpicker
 sudo pacman -Syu --needed jq playerctl brightnessctl
-sudo pacman -Syu --needed hyprpicker grim slurp
-sudo pacman -Syu --needed fuzzel cliphist
+sudo pacman -Syu --needed fuzzel cliphist dunst
 paru -S bemoji
+sudo pacman -Syu --needed hyprpicker grim slurp scdoc
 bash -c 'cd git/hyprwm-contrib/grimblast && sudo make install'
