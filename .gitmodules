@@ -22,3 +22,6 @@
 [submodule "git/paru-bin"]
 	path = git/paru-bin
 	url = https://aur.archlinux.org/paru-bin.git
+[submodule "git/hyprwm-contrib"]
+	path = git/hyprwm-contrib
+	url = https://github.com/hyprwm/contrib
