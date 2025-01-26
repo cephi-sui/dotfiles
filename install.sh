@@ -27,9 +27,10 @@ sudo pacman -Syu --needed pipewire pipewire-audio pipewire-jack pipewire-pulse w
 sudo pacman -Syu --needed gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra nerd-fonts
 
 # GUI Applications
-sudo pacman -Syu --needed alacritty firefox mpv
+sudo pacman -Syu --needed alacritty mpv firefox chromium
 
 # Firefox Setup
+xdg-settings set default-web-browser firefox.desktop
 firefox --headless --screenshot /dev/null > /dev/null
 ln -v git/BetterFox/user.js ~/.mozilla/firefox/*.default-release/.
 
@@ -56,9 +57,10 @@ gnome-extensions enable drive-menu@gnome-shell-extensions.gcampax.github.com
 gnome-extensions enable launch-new-instance@gnome-shell-extensions.gcampax.github.com
 
 # Hyprland
-sudo pacman -Syu --needed hyprland hyprpolkitagent hyprlock hyprpicker
+sudo pacman -Syu --needed hyprland hyprpolkitagent hyprlock hyprpicker hyprpaper
 sudo pacman -Syu --needed jq playerctl brightnessctl
 sudo pacman -Syu --needed fuzzel cliphist dunst
-paru -S bemoji
+paru -S bemoji waypaper bibata-cursor-theme-bin
+
 sudo pacman -Syu --needed hyprpicker grim slurp scdoc
 bash -c 'cd git/hyprwm-contrib/grimblast && sudo make install'
