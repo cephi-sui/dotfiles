@@ -25,3 +25,9 @@
 [submodule "git/hyprwm-contrib"]
 	path = git/hyprwm-contrib
 	url = https://github.com/hyprwm/contrib
+[submodule "git/catppuccin-hyprland"]
+	path = git/catppuccin-hyprland
+	url = https://github.com/catppuccin/hyprland
+[submodule "git/catppuccin-fuzzel"]
+	path = git/catppuccin-fuzzel
+	url = https://github.com/catppuccin/fuzzel
