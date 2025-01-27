@@ -66,3 +66,5 @@ paru -S bemoji waypaper bibata-cursor-theme-bin
 
 sudo pacman -Syu --needed hyprpicker grim slurp scdoc
 bash -c 'cd git/hyprwm-contrib/grimblast && sudo make install'
+
+sudo systemctl enable --now gdm
