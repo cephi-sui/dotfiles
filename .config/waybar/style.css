@@ -44,7 +44,7 @@ tooltip {
     /*border: 2px solid @lavender;*/
     border: 2px solid transparent;
     border-radius: 18px;
-    background-color: alpha(@base, 0.7);
+    background-color: alpha(@base, 0.8);
 }
 
 /* Clear default GTK styling. */
@@ -75,7 +75,7 @@ tooltip label {
     /*border: solid 2px @lavender;*/
     border: 2px solid transparent;
     border-radius: 18px;
-    background-color: alpha(@base, 0.7);
+    background-color: alpha(@base, 0.8);
 }
 
 /*       _    */
@@ -236,7 +236,7 @@ window#waybar.empty #window {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: alpha(@red, 0.7);
+    background-color: alpha(@red, 0.8);
 }
 
 /* Zero out the padding/margin for the module itself and let
