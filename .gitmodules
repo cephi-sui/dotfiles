@@ -15,7 +15,7 @@
 	url = https://github.com/catppuccin/tmux.git
 [submodule "git/BetterFox"]
 	path = git/BetterFox
-	url = https://github.com/yokoffing/BetterFox
+	url = ssh://git@github.com/cephi-sui/Betterfox
 [submodule "git/catppuccin-btop"]
 	path = git/catppuccin-btop
 	url = https://github.com/catppuccin/btop
