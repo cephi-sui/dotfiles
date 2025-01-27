@@ -1,5 +1,7 @@
 #! /bin/bash
 
+sudo pacman -Syu stow
+
 git submodule init
 git submodule update
 
