@@ -12,15 +12,15 @@ mv -v ~/.bashrc ~/.bashrc.bak
 stow -v .
 rm -v ~/.bashrc.bak
 
-# AUR Helper
-makepkg -siD git/paru-bin
-bash -c 'cd git/paru-bin && git clean -df'
-
 # CLI Applications
 sudo pacman -Syu --needed pacman-contrib base-devel
 sudo pacman -Syu --needed man-db man-pages texinfo
 sudo pacman -Syu --needed wget curl unzip openssh nmap openbsd-netcat
 sudo pacman -Syu --needed btop htop nvtop speedtest-cli
+
+# AUR Helper
+makepkg -siD git/paru-bin
+bash -c 'cd git/paru-bin && git clean -df'
 
 # Audio
 sudo pacman -Syu --needed pipewire pipewire-audio pipewire-jack pipewire-pulse wireplumber pulsemixer
@@ -66,5 +66,7 @@ paru -S bemoji waypaper bibata-cursor-theme-bin
 
 sudo pacman -Syu --needed hyprpicker grim slurp scdoc
 bash -c 'cd git/hyprwm-contrib/grimblast && sudo make install'
+
+sudo pacman -Syu --needed waybar
 
 sudo systemctl enable --now gdm
