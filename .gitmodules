@@ -3,10 +3,10 @@
 	url = https://github.com/cephi-sui/dotfiles.wiki
 [submodule "git/catppuccin-vim"]
 	path = git/catppuccin-vim
-	url = ssh://git@github.com/cephi-sui/vim
+	url = https://github.com/cephi-sui/vim
 [submodule "git/catppuccin-adwaita"]
 	path = git/catppuccin-adwaita
-	url = ssh://git@github.com/cephi-sui/adw-catppuccin
+	url = https://github.com/cephi-sui/adw-catppuccin
 [submodule "git/catppuccin-alacritty"]
 	path = git/catppuccin-alacritty
 	url = https://github.com/catppuccin/alacritty
@@ -15,7 +15,7 @@
 	url = https://github.com/catppuccin/tmux.git
 [submodule "git/BetterFox"]
 	path = git/BetterFox
-	url = ssh://git@github.com/cephi-sui/Betterfox
+	url = https://github.com/cephi-sui/Betterfox
 [submodule "git/catppuccin-btop"]
 	path = git/catppuccin-btop
 	url = https://github.com/catppuccin/btop
