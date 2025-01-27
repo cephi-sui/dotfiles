@@ -31,3 +31,6 @@
 [submodule "git/catppuccin-fuzzel"]
 	path = git/catppuccin-fuzzel
 	url = https://github.com/catppuccin/fuzzel
+[submodule "git/catppuccin-dunst"]
+	path = git/catppuccin-dunst
+	url = https://github.com/catppuccin/dunst
