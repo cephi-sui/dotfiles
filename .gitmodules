@@ -3,10 +3,10 @@
 	url = https://github.com/cephi-sui/dotfiles.wiki
 [submodule "git/catppuccin-vim"]
 	path = git/catppuccin-vim
-	url = https://github.com/catppuccin/vim
+	url = ssh://git@github.com/cephi-sui/vim
 [submodule "git/catppuccin-adwaita"]
 	path = git/catppuccin-adwaita
-	url = https://github.com/claymorwan/adw-catppuccin
+	url = ssh://git@github.com/cephi-sui/adw-catppuccin
 [submodule "git/catppuccin-alacritty"]
 	path = git/catppuccin-alacritty
 	url = https://github.com/catppuccin/alacritty
