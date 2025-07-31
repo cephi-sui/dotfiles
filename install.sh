@@ -26,8 +26,7 @@ bash -c 'cd git/paru-bin && git clean -df'
 sudo pacman -Syu --needed pipewire pipewire-audio pipewire-jack pipewire-pulse wireplumber pulsemixer
 
 # Bluetooth
-sudo pacman -Syu --needed bluez bluez-utils bluetui
-sudo systemctl enable --now bluetooth
+sudo pacman -Syu --needed bluetui
 
 # Fonts
 sudo pacman -Syu --needed gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra nerd-fonts
