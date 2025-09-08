@@ -1,5 +1,7 @@
 #! /bin/bash
 
+sudo systemctl start reflector
+
 sudo pacman -Syu stow
 
 git submodule init
