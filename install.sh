@@ -2,7 +2,7 @@
 
 sudo systemctl start reflector
 
-sudo pacman -Syu stow
+sudo pacman -Syu --needed stow
 
 git submodule init
 git submodule update
@@ -38,7 +38,11 @@ sudo pacman -Syu --needed alacritty mpv firefox chromium
 
 # Firefox Setup
 xdg-settings set default-web-browser firefox.desktop
-firefox --headless --screenshot /dev/null > /dev/null
+#firefox --headless --screenshot /dev/null > /dev/null
+firefox --headless &
+pid=$!
+sleep 1s
+kill $pid
 ln -v git/BetterFox/user.js ~/.mozilla/firefox/*.default-release/.
 
 # GNOME
