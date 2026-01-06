@@ -34,3 +34,6 @@
 [submodule "git/catppuccin-dunst"]
 	path = git/catppuccin-dunst
 	url = https://github.com/catppuccin/dunst
+[submodule "git/paru"]
+	path = git/paru
+	url = https://aur.archlinux.org/paru.git

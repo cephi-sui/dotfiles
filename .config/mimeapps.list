@@ -5,6 +5,21 @@ x-scheme-handler/https=firefox.desktop
 x-scheme-handler/about=firefox.desktop
 x-scheme-handler/unknown=firefox.desktop
 image/png=org.gnome.Loupe.desktop
+application/x-msdownload=wine.desktop
+image/jpeg=org.gnome.Loupe.desktop
+text/x-python=vim.desktop
+application/toml=vim.desktop
+x-scheme-handler/ror2mm=r2modman.desktop
+text/plain=vim.desktop
+lec_10.pdf=firefox.desktop
+application/pdf=firefox.desktop
 
 [Added Associations]
 image/png=org.gnome.Loupe.desktop;
+application/x-msdownload=wine.desktop;
+image/jpeg=org.gnome.Loupe.desktop;
+text/x-python=vim.desktop;
+application/toml=vim.desktop;
+text/plain=vim.desktop;
+application/pdf=firefox.desktop;
+model/stl=BambuStudio.desktop;
