@@ -80,4 +80,9 @@ bash -c 'cd git/hyprwm-contrib/grimblast && sudo make install'
 
 sudo pacman -Syu --needed waybar
 
+# Niri
+sudo pacman -Syu niri
+#sudo pacman -Syu mako swaybg swaylock
+sudo pacman -Syu polkit-kde-agent xwayland-satellite
+
 sudo systemctl enable --now gdm
