@@ -21,8 +21,10 @@ sudo pacman -Syu --needed wget curl unzip openssh nmap openbsd-netcat
 sudo pacman -Syu --needed btop htop nvtop speedtest-cli
 
 # AUR Helper
-makepkg -siD git/paru-bin
-bash -c 'cd git/paru-bin && git clean -df'
+sudo pacman -Syu --needed rustup
+rustup default stable
+makepkg -siD git/paru
+bash -c 'cd git/paru && git clean -df'
 
 # Audio
 sudo pacman -Syu --needed pipewire pipewire-audio pipewire-jack pipewire-pulse wireplumber pulsemixer
