@@ -1,6 +1,9 @@
-# Comments and blank lines are allowed.
-git
+# Custom stow ignore
+
+submodules
 install.*
+
+# Default stow ignore
 
 RCS
 .+,v
