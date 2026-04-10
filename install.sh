@@ -89,7 +89,7 @@ gnome-extensions enable launch-new-instance@gnome-shell-extensions.gcampax.githu
 # Niri
 sudo pacman -Syu --needed niri
 #sudo pacman -Syu mako swaybg swaylock
-sudo pacman -Syu --needed polkit-kde-agent xwayland-satellite
+sudo pacman -Syu --needed polkit-gnome xwayland-satellite
 sudo pacman -Syu --needed xdg-desktop-portal-gtk xdg-desktop-port-gnome gnome-keyring
 
 sudo systemctl enable --now gdm
