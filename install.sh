@@ -3,7 +3,6 @@
 sudo systemctl start reflector
 
 sudo pacman -Syu --needed stow
-
 git submodule init
 git submodule update
 
@@ -28,6 +27,10 @@ bash -c 'cd git/paru && git clean -df'
 
 # Audio
 sudo pacman -Syu --needed pipewire pipewire-audio pipewire-jack pipewire-pulse wireplumber pulsemixer
+
+# Audio Input Processing
+sudo pacman -Syu --needed easyeffects lsp-plugins qtractor rnnoise calf
+paru -Sua libdeep_filter_ladspa-git
 
 # Bluetooth
 sudo pacman -Syu --needed bluetui
