@@ -279,6 +279,11 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
+// TODO: Fix GTK theming
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+
+spawn-at-startup "fcitx5"
+spawn-at-startup "easyeffects --service-mode"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"

@@ -38,6 +38,9 @@ sudo pacman -Syu --needed bluetui
 # Fonts
 sudo pacman -Syu --needed gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra nerd-fonts
 
+# IMF for typing in other languages
+sudo pacman -Syu --needed fcitx5
+
 # GUI Applications
 sudo pacman -Syu --needed alacritty mpv firefox chromium
 
@@ -73,19 +76,20 @@ gnome-extensions enable drive-menu@gnome-shell-extensions.gcampax.github.com
 gnome-extensions enable launch-new-instance@gnome-shell-extensions.gcampax.github.com
 
 # Hyprland
-sudo pacman -Syu --needed hyprland hyprpolkitagent hyprlock hyprpicker hyprpaper
-sudo pacman -Syu --needed jq playerctl brightnessctl
-sudo pacman -Syu --needed fuzzel cliphist dunst
-paru -S bemoji waypaper bibata-cursor-theme-bin
-
-sudo pacman -Syu --needed hyprpicker grim slurp scdoc
-bash -c 'cd git/hyprwm-contrib/grimblast && sudo make install'
-
-sudo pacman -Syu --needed waybar
+#sudo pacman -Syu --needed hyprland hyprpolkitagent hyprlock hyprpicker hyprpaper
+#sudo pacman -Syu --needed jq playerctl brightnessctl
+#sudo pacman -Syu --needed fuzzel cliphist dunst
+#paru -S bemoji waypaper bibata-cursor-theme-bin
+#
+#sudo pacman -Syu --needed hyprpicker grim slurp scdoc
+#bash -c 'cd git/hyprwm-contrib/grimblast && sudo make install'
+#
+#sudo pacman -Syu --needed waybar
 
 # Niri
-sudo pacman -Syu niri
+sudo pacman -Syu --needed niri
 #sudo pacman -Syu mako swaybg swaylock
-sudo pacman -Syu polkit-kde-agent xwayland-satellite
+sudo pacman -Syu --needed polkit-kde-agent xwayland-satellite
+sudo pacman -Syu --needed xdg-desktop-portal-gtk xdg-desktop-port-gnome gnome-keyring
 
 sudo systemctl enable --now gdm
