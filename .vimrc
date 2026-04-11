@@ -1,7 +1,7 @@
 " Color Theming (if in supported terminal)
 if $TERM != 'linux'
     set termguicolors
-    colorscheme catppuccin_macchiato
+    colorscheme catppuccin_latte
 endif
 
 " Syntax Highlighting
