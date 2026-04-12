@@ -38,8 +38,8 @@ sudo pacman -Syu --needed bluetui
 # Fonts
 sudo pacman -Syu --needed gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra nerd-fonts
 
-# IMF for typing in other languages
-sudo pacman -Syu --needed fcitx5
+# IMF for typing in other languages + IME for typing in Japanese
+sudo pacman -Syu --needed fcitx5 fcitx5-mozc
 
 # GUI Applications
 sudo pacman -Syu --needed alacritty mpv firefox chromium
@@ -93,5 +93,6 @@ sudo pacman -Syu --needed playerctl brightnessctl wl-clipboard
 #sudo pacman -Syu mako swaybg swaylock
 sudo pacman -Syu --needed polkit-gnome xwayland-satellite
 sudo pacman -Syu --needed xdg-desktop-portal-gtk xdg-desktop-port-gnome gnome-keyring
+paru -S bemoji
 
 sudo systemctl enable --now gdm

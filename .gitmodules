@@ -1,3 +1,6 @@
 [submodule "submodules/catppuccin-vim"]
 	path = submodules/catppuccin-vim
-	url = https://github.com/cephi-sui/vim.git
+	url = https://github.com/cephi-sui/catppuccin-vim
+[submodule "submodules/catppuccin-alacritty"]
+	path = submodules/catppuccin-alacritty
+	url = https://github.com/cephi-sui/catppuccin-alacritty

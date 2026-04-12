@@ -1,5 +1,5 @@
 [general]
-import = ["~/.config/alacritty/catppuccin-macchiato.toml"]
+import = ["./catppuccin-latte.toml"]
 
 [window]
 padding = { x = 5, y = 5 }
