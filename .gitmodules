@@ -7,3 +7,6 @@
 [submodule "submodules/cefield-cursors"]
 	path = submodules/cefield-cursors
 	url = https://github.com/cephi-sui/cefield-cursors.git
+[submodule "submodules/catppuccin-fuzzel"]
+	path = submodules/catppuccin-fuzzel
+	url = https://github.com/cephi-sui/catppuccin-fuzzel
