@@ -163,8 +163,7 @@ hotkey-overlay {
 
 prefer-no-csd
 
-// screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-screenshot-path null
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // Animation settings.
 // The wiki explains how to configure individual animations:
@@ -242,8 +241,8 @@ binds {
 
     // Screenshots
     Mod+Shift+S { screenshot; }
-    Mod+Print   { screenshot-window; }
-    Print       { screenshot-screen; }
+    Mod+Print   { screenshot-window write-to-disk=false; }
+    Print       { screenshot-screen write-to-disk=false; }
 
     // Applications
     Mod+Return hotkey-overlay-title="Terminal"     { spawn "alacritty"; }
