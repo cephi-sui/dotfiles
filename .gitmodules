@@ -4,3 +4,6 @@
 [submodule "submodules/catppuccin-alacritty"]
 	path = submodules/catppuccin-alacritty
 	url = https://github.com/cephi-sui/catppuccin-alacritty
+[submodule "submodules/cefield-cursors"]
+	path = submodules/cefield-cursors
+	url = https://github.com/cephi-sui/cefield-cursors.git

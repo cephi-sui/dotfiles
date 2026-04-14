@@ -52,6 +52,11 @@ input {
     }
 }
 
+cursor {
+    xcursor-theme "cefield-cursors"
+    xcursor-size 24
+}
+
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
 // Find more information on the wiki:
