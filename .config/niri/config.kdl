@@ -203,6 +203,13 @@ animations {
     }
 }
 
+blur {
+    passes 3
+    offset 2
+    noise 0.02
+    saturation 1.5
+}
+
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
@@ -229,6 +236,21 @@ window-rule {
 
 /-window-rule {
     block-out-from "screen-capture"
+}
+
+layer-rule {
+    background-effect {
+        blur true
+    }
+}
+
+layer-rule {
+    match namespace="launcher"
+    geometry-corner-radius 16
+
+    background-effect {
+        blur true
+    }
 }
 
 recent-windows { off; }
