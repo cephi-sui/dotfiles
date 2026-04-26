@@ -155,6 +155,7 @@ spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 spawn-at-startup "fcitx5"
 spawn-at-startup "easyeffects --service-mode"
+spawn-at-startup "awww-daemon"
 
 hotkey-overlay {
     skip-at-startup
@@ -208,6 +209,9 @@ animations {
 window-rule {
     geometry-corner-radius 16
     clip-to-geometry true
+    background-effect {
+        blur true
+    }
 }
 
 window-rule {
@@ -306,17 +310,17 @@ binds {
     Mod+Home { focus-column-first; }
     Mod+End  { focus-column-last; }
 
-    Alt+Tab       { focus-window-previous; }
+    Alt+Tab { focus-window-previous; }
 
     // Move
     Mod+Ctrl+Left  { consume-or-expel-window-left; }
     Mod+Ctrl+Down  { move-window-down; }
     Mod+Ctrl+Up    { move-window-up; }
     Mod+Ctrl+Right { consume-or-expel-window-right; }
-    Mod+Ctrl+H  { consume-or-expel-window-left; }
+    Mod+Ctrl+H     { consume-or-expel-window-left; }
     Mod+Ctrl+J     { move-window-down; }
     Mod+Ctrl+K     { move-window-up; }
-    Mod+Ctrl+L { consume-or-expel-window-right; }
+    Mod+Ctrl+L     { consume-or-expel-window-right; }
 
     // Manipulation
     Mod+Q repeat=false { close-window; }
@@ -395,15 +399,15 @@ binds {
     Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-window-to-workspace-up; }
 
     // Touchpad scrolling is inverted due to natural scrolling.
-    Mod+TouchpadScrollDown   cooldown-ms=150 { focus-workspace-up; }
-    Mod+TouchpadScrollUp     cooldown-ms=150 { focus-workspace-down; }
+    Mod+TouchpadScrollDown      cooldown-ms=150 { focus-workspace-up; }
+    Mod+TouchpadScrollUp        cooldown-ms=150 { focus-workspace-down; }
     Mod+Ctrl+TouchpadScrollDown cooldown-ms=150 { move-window-to-workspace-up; }
     Mod+Ctrl+TouchpadScrollUp   cooldown-ms=150 { move-window-to-workspace-down; }
 
-    Mod+WheelScrollRight      cooldown-ms=150 { focus-column-right-or-first; }
-    Mod+WheelScrollLeft       cooldown-ms=150 { focus-column-left-or-last; }
-    Mod+Ctrl+WheelScrollRight cooldown-ms=150 { consume-or-expel-window-right; }
-    Mod+Ctrl+WheelScrollLeft  cooldown-ms=150 { consume-or-expel-window-left; }
+    Mod+WheelScrollRight           cooldown-ms=150 { focus-column-right-or-first; }
+    Mod+WheelScrollLeft            cooldown-ms=150 { focus-column-left-or-last; }
+    Mod+Ctrl+WheelScrollRight      cooldown-ms=150 { consume-or-expel-window-right; }
+    Mod+Ctrl+WheelScrollLeft       cooldown-ms=150 { consume-or-expel-window-left; }
     Mod+Shift+WheelScrollDown      cooldown-ms=50 { focus-column-right-or-first; }
     Mod+Shift+WheelScrollUp        cooldown-ms=50 { focus-column-left-or-last; }
     Mod+Shift+Ctrl+WheelScrollDown cooldown-ms=150 { consume-or-expel-window-right; }

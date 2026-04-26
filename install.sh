@@ -91,6 +91,7 @@ sudo pacman -Syu --needed niri
 sudo pacman -Syu --needed fuzzel
 sudo pacman -Syu --needed playerctl brightnessctl wl-clipboard
 #sudo pacman -Syu mako swaybg swaylock
+sudo pacman -Syu --needed awww
 sudo pacman -Syu --needed polkit-gnome xwayland-satellite
 sudo pacman -Syu --needed xdg-desktop-portal-gtk xdg-desktop-port-gnome gnome-keyring
 paru -S bemoji
