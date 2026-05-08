@@ -131,7 +131,7 @@ layout {
 
         width 4
 
-        active-color "#04a5e5cc"
+        active-color "#04a5e5"
 
         // The focus ring only draws around the active window, so the only place
         // where you can see its inactive-color is on other monitors.
@@ -147,7 +147,7 @@ layout {
     }
 
     insert-hint {
-        color "#04a5e5cc"
+        off
     }
 
     struts { }
@@ -227,7 +227,7 @@ window-rule {
     match is-window-cast-target=true
 
     focus-ring {
-        active-color "#e64553cc"
+        active-color "#e64553"
     }
 }
 
