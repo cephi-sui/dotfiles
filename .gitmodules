@@ -10,3 +10,6 @@
 [submodule "submodules/catppuccin-fuzzel"]
 	path = submodules/catppuccin-fuzzel
 	url = https://github.com/cephi-sui/catppuccin-fuzzel
+[submodule "submodules/catppuccin-tmux"]
+	path = submodules/catppuccin-tmux
+	url = https://github.com/catppuccin/tmux
