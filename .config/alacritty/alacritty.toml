@@ -7,7 +7,7 @@ dynamic_padding = true
 opacity = 0.8
 
 [font]
-normal = { family = "RobotoMono Nerd Font", style = "Regular"}
+normal = { family = "RobotoMono Nerd Font", style = "Medium"}
 
 [keyboard]
 bindings = [

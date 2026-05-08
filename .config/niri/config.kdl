@@ -98,6 +98,8 @@ layout {
 
     default-column-display "normal"
 
+    background-color "transparent"
+
     preset-column-widths {
         proportion 0.25
         proportion 0.5
@@ -205,7 +207,7 @@ animations {
 
 blur {
     passes 3
-    offset 2
+    offset 3
     noise 0.02
     saturation 1.5
 }
@@ -239,18 +241,18 @@ window-rule {
 }
 
 layer-rule {
-    background-effect {
-        blur true
-    }
-}
-
-layer-rule {
-    match namespace="launcher"
+    match namespace="^launcher$"
     geometry-corner-radius 16
 
     background-effect {
         blur true
+        xray false
     }
+}
+
+layer-rule  {
+    match namespace="^awww-daemon$"
+    place-within-backdrop true
 }
 
 recent-windows { off; }
@@ -411,6 +413,8 @@ binds {
 
     Mod+Tab       { focus-workspace-down; }
     Mod+Shift+Tab { focus-workspace-up; }
+    Mod+Ctrl+Tab       { move-window-to-workspace-down; }
+    Mod+Ctrl+Shift+Tab { move-window-to-workspace-up; }
 
     // #############
     // ### MOUSE ###
