@@ -18,4 +18,4 @@
 	url = https://github.com/catppuccin/btop
 [submodule "submodules/catppuccin-adwaita"]
 	path = submodules/catppuccin-adwaita
-	url = git@github.com:cephi-sui/catppuccin-adwaita.git
+	url = https://github.com/cephi-sui/catppuccin-adwaita

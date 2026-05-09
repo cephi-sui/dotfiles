@@ -218,8 +218,15 @@ blur {
 window-rule {
     geometry-corner-radius 16
     clip-to-geometry true
+    draw-border-with-background false
     background-effect {
         blur true
+    }
+    popups {
+        geometry-corner-radius 16
+        background-effect {
+            blur true
+        }
     }
 }
 
