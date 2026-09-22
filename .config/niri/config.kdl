@@ -206,7 +206,7 @@ animations {
 }
 
 blur {
-    passes 3
+    passes 1
     offset 3
     noise 0.02
     saturation 1.5
@@ -269,6 +269,13 @@ layer-rule {
 layer-rule  {
     match namespace="^awww-daemon$"
     place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="^quickshell$"
+    background-effect {
+        blur true
+    }
 }
 
 recent-windows { off; }
