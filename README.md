@@ -1,21 +1,7 @@
-## Notes
-### GTK Theming
-Set theme to dark in settings and adw-gtk3-dark in tweaks
+# Cephi's Dotfiles
 
-### GNOME
-```shell
-gsettings set org.gnome.desktop.wm.preferences button-layout appmenu
-gsettings set org.gnome.Console audible-bell false
+All current development is occurring in the `niri-v2` branch.
 
-gsettings set org.gnome.desktop.wm.keybindings close "['<Super>q']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys control-center "['<Super>i']"
-gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>z']"
-gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Super><Shift>s']"
-gsettings set org.gnome.shell.keybindings screenshot "['Print']"
-gsettings set org.gnome.shell.keybindings screenshot-window "['<Super>Print']"
+When development is finished, it will likely take over this branch.
 
-gnome-extensions enable status-icons@gnome-shell-extensions.gcampax.github.com
-gnome-extensions enable drive-menu@gnome-shell-extensions.gcampax.github.com
-gnome-extensions enable launch-new-instance@gnome-shell-extensions.gcampax.github.com
-```
+The most stable component of this repo is the [wiki](https://github.com/cephi-sui/dotfiles/wiki), which details all of my installation and configuration steps alongside the reasoning for each of my choices.
