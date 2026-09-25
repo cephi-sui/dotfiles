@@ -1,6 +1,6 @@
 # Cephi's Dotfiles
 
-All current development is occurring in the `niri-v2` branch.
+All current development is occurring in the [niri-v2](https://github.com/cephi-sui/dotfiles/tree/niri-v2) branch.
 
 When development is finished, it will likely take over this branch.
 
