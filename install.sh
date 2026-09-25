@@ -51,7 +51,7 @@ firefox --headless &
 pid=$!
 sleep 1s
 kill $pid
-ln -v BetterFox/user.js ~/.config/mozilla/firefox/*.default-release/.
+ln -srv ./submodules/BetterFox/user.js ~/.config/mozilla/firefox/*.default-release/.
 
 # GNOME
 sudo pacman -Syu --needed gnome gnome-tweaks gnome-browser-connector dconf-editor file-roller
@@ -88,12 +88,12 @@ gnome-extensions enable launch-new-instance@gnome-shell-extensions.gcampax.githu
 
 # Niri
 sudo pacman -Syu --needed niri
-sudo pacman -Syu --needed fuzzel
-sudo pacman -Syu --needed playerctl brightnessctl wl-clipboard
+sudo pacman -Syu --needed fuzzel # Launcher
+sudo pacman -Syu --needed playerctl brightnessctl wl-clipboard # CLI Tools
 #sudo pacman -Syu mako swaybg swaylock
-sudo pacman -Syu --needed awww
-sudo pacman -Syu --needed polkit-gnome xwayland-satellite
-sudo pacman -Syu --needed xdg-desktop-portal-gtk xdg-desktop-port-gnome gnome-keyring
-paru -S bemoji
+sudo pacman -Syu --needed awww # Backround
+sudo pacman -Syu --needed polkit-gnome xwayland-satellite # Polkit + XWayland
+sudo pacman -Syu --needed xdg-desktop-portal-gtk xdg-desktop-port-gnome gnome-keyring # Desktop portal and secrets management
+paru -S bemoji # Emojis
 
 sudo systemctl enable --now gdm

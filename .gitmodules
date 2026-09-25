@@ -19,3 +19,6 @@
 [submodule "submodules/catppuccin-adwaita"]
 	path = submodules/catppuccin-adwaita
 	url = https://github.com/cephi-sui/catppuccin-adwaita
+[submodule "submodules/Betterfox"]
+	path = submodules/Betterfox
+	url = https://github.com/cephi-sui/Betterfox
